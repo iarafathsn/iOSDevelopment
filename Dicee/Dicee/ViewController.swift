@@ -20,9 +20,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setDiceImages()
     }
-
-    @IBAction func rollButtonPressed(_ sender: UIButton) {
+    
+    func setDiceImages() {
         randomDiceIndex1 = Int(arc4random_uniform(6))
         randomDiceIndex2 = Int(arc4random_uniform(6))
         
@@ -30,6 +31,11 @@ class ViewController: UIViewController {
         
         diceImageView1.image = UIImage(named: diceArray[randomDiceIndex1])
         diceImageView2.image = UIImage(named: diceArray[randomDiceIndex2])
+    }
+
+    @IBAction func rollButtonPressed(_ sender: UIButton) {
+        print("roll button pressed")
+        setDiceImages()
     }
 }
 
