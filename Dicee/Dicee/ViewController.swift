@@ -37,5 +37,10 @@ class ViewController: UIViewController {
         print("roll button pressed")
         setDiceImages()
     }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        print("motionEnded")
+        setDiceImages()
+    }
 }
 
