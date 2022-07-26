@@ -50,21 +50,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             dotNodes = [SCNNode]()
         }
         
-        if let touchLocation = touches.first?.location(in: sceneView) {            
-            let query: ARRaycastQuery? = sceneView.raycastQuery(from: touchLocation, allowing: .estimatedPlane, alignment: .any)
+        print("Touch found")
+        
+        if let touchLocation = touches.first?.location(in: sceneView) {
+            let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
             
-            if let nonOptQuery: ARRaycastQuery = query {
-                    let result: [ARRaycastResult] = sceneView.session.raycast(nonOptQuery)
-
-                    guard let rayCast: ARRaycastResult = result.first
-                    else { return }
-
-                    addDot(at: rayCast)
+            if let hitResult = hitTestResults.first {
+                addDot(at: hitResult)
             }
+            
         }
+        
+//        if let touchLocation = touches.first?.location(in: sceneView) {
+//            print("Touch found at \(touchLocation)")
+//            let query: ARRaycastQuery? = sceneView.raycastQuery(from: touchLocation, allowing: .estimatedPlane, alignment: .any)
+//
+//            if let nonOptQuery: ARRaycastQuery = query {
+//                    let result: [ARRaycastResult] = sceneView.session.raycast(nonOptQuery)
+//
+//                    guard let rayCast: ARRaycastResult = result.first
+//
+//                else {
+//                        print("Returning")
+//                        return
+//                    }
+//
+//                    addDot(at: rayCast)
+//            }
+//        }
     }
     
-    func addDot(at hitResult : ARRaycastResult) {
+    func addDot(at hitResult : ARHitTestResult) {
         let dotGeometry = SCNSphere(radius: 0.005)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.red
@@ -96,11 +112,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                             pow(end.position.z - start.position.z, 2)
         )
         
-        print(abs(distance))
+        let distanceAbs = abs(distance) * 100
         
-        let textPosition = SCNVector3((end.position.x + start.position.x)/2, start.position.y, start.position.z)
+        print(distanceAbs)
         
-        updateText(text: "\(abs(distance))", atPosition: textPosition)
+        let roundedValue = round(distanceAbs * 100) / 100.0
+                
+        updateText(text: "\(roundedValue) cm", atPosition: end.position)
     }
     
     func updateText(text: String, atPosition position: SCNVector3) {
