@@ -11,21 +11,27 @@ struct AccountListView: View {
     @State private var showingSheet = false
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Account List View")
-            }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        print("Add pressed")
-                        showingSheet.toggle()
-                    } label: {
-                        Label ("Add", systemImage: "plus")
+        VStack {
+            Text("Account List View")
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    print("Add account pressed")
+                    showingSheet.toggle()
+                } label: {
+                    ZStack {
+                        Circle()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.blue)
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.white)
                     }
-                    .sheet(isPresented: $showingSheet) {
-                        AddAccountView()
-                    }
+                }
+                .sheet(isPresented: $showingSheet) {
+                    AddAccountView()
                 }
             }
         }

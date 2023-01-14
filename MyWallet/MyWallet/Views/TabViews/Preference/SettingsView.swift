@@ -47,6 +47,8 @@ struct SettingDetailView: View {
             CurrencyView()
         case .Categories:
             CategoryView()
+        case .Account:
+            AccountListView()
         default:
             Text("Default view")
         }

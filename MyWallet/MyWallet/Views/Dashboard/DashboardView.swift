@@ -23,7 +23,15 @@ struct DashboardView: View {
                         print("Add pressed")
                         showingSheet.toggle()
                     } label: {
-                        Label ("Add", systemImage: "plus")
+                        ZStack {
+                            Circle()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.blue)
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                        }
                     }
                     .sheet(isPresented: $showingSheet) {
                         AddTransactionView()

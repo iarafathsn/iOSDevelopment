@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CurrencyView: View {
-    @ObservedObject var defaultDataVM = DefaultDataVM()
+    @ObservedObject var defaultDataVM = AddCurrencyVM()
 
     var body: some View {
         Form {

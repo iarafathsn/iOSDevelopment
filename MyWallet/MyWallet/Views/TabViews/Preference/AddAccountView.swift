@@ -12,9 +12,12 @@ struct AddAccountView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Add Account View")
-                    .font(.system(size: 20, weight: .bold))
+            Form {
+                HStack {
+                    Text("Symbol")
+                    Spacer()
+                    Text("Arafat")
+                }
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
