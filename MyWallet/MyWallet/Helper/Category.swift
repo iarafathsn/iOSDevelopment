@@ -28,17 +28,17 @@ struct SubCategory: Identifiable {
 
 struct Categories {
     static let mainList = [
-        Category(type: .Food, name: "Food & Drinks", color: .green, image: "fork.knife"),
+        Category(type: .Food, name: "Food & Drinks", color: .pink, image: "fork.knife"),
         Category(type: .Vehicle, name: "Vehicle", color: .indigo, image: "car"),
         Category(type: .Shopping, name: "Shopping", color: .orange, image: "handbag"),
         Category(type: .Housing, name: "Housing", color: .blue, image: "house"),
-        Category(type: .Electronics, name: "Electronics", color: .cyan, image: "macbook.and.iphone"),
+        Category(type: .Electronics, name: "Electronics", color: .brown, image: "macbook.and.iphone"),
         Category(type: .Transportation, name: "Transportation", color: .mint, image: "bus"),
-        Category(type: .Healthcare, name: "Healthcare", color: .purple, image: "cross"),
-        Category(type: .Financial, name: "Financial", color: .gray, image: "dollarsign.arrow.circlepath"),
-        Category(type: .Income, name: "Income", color: .brown, image: "banknote"),
+        Category(type: .Healthcare, name: "Healthcare", color: .red, image: "cross"),
+        Category(type: .Financial, name: "Financial", color: .purple, image: "dollarsign.arrow.circlepath"),
+        Category(type: .Income, name: "Income", color: .cyan, image: "banknote"),
         Category(type: .Kids, name: "Kids, Parent", color: .teal, image: "figure.2.and.child.holdinghands"),
-        Category(type: .Entertainment, name: "Entertainment", color: .pink, image: "party.popper")
+        Category(type: .Entertainment, name: "Entertainment", color: .green, image: "party.popper")
     ]
     
     static let subList = [

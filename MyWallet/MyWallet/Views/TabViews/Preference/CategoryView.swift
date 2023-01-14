@@ -14,8 +14,16 @@ struct CategoryView: View {
         VStack {
             List(categoryItems) { item in
                 HStack(spacing: 10) {
-                    NavigationLink(destination: SubCategoryView(catType: item.type)) {
-                        Image(systemName: item.image)
+                    NavigationLink(destination: SubCategoryView(catType: item.type, color: item.color)) {
+                        ZStack {
+                            Circle()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(item.color)
+                            Image(systemName: item.image)
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                        }
+                        
                         Text(item.name)
                             .minimumScaleFactor(0.5)
                             .lineLimit(1)
@@ -30,6 +38,8 @@ struct CategoryView: View {
 
 struct SubCategoryView: View {
     var catType: CategoryType
+    var color: Color
+    
     let subCategory: [SubCategory] = Categories.subList
     
     var body: some View {
@@ -39,10 +49,18 @@ struct SubCategoryView: View {
             List(subCategory) { item in
                 if item.parentType == catType {
                     HStack(spacing: 10) {
-                        Image(systemName: item.image)
+                        ZStack {
+                            Circle()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(color)
+                            Image(systemName: item.image)
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                        }
+                        
                         Text(item.name)
                             .minimumScaleFactor(0.5)
-                            .lineLimit(1)
+                            .lineLimit(2)
                     }
                 }
             }
