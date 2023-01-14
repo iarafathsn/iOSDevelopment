@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		863CD27B296936D400C5243C /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD27A296936D400C5243C /* CurrencyView.swift */; };
+		863CD28D2969775B00C5243C /* DefaultDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD28C2969775B00C5243C /* DefaultDataVM.swift */; };
+		863CD28F2969C56600C5243C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD28E2969C56600C5243C /* Category.swift */; };
 		867F39FF2969113A0035E096 /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F39FE2969113A0035E096 /* AccountListView.swift */; };
 		867F3A01296911D20035E096 /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F3A00296911D20035E096 /* AddAccountView.swift */; };
 		867F3A03296920220035E096 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F3A02296920220035E096 /* Currency.swift */; };
+		868A856B2972751C0031F29B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A856A2972751C0031F29B /* CategoryView.swift */; };
 		86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C72960311F00EF1CFD /* MyWalletApp.swift */; };
 		86B218CA2960311F00EF1CFD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C92960311F00EF1CFD /* MainView.swift */; };
 		86B218CC2960312100EF1CFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CB2960312100EF1CFD /* Assets.xcassets */; };
@@ -28,9 +31,12 @@
 
 /* Begin PBXFileReference section */
 		863CD27A296936D400C5243C /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
+		863CD28C2969775B00C5243C /* DefaultDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataVM.swift; sourceTree = "<group>"; };
+		863CD28E2969C56600C5243C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		867F39FE2969113A0035E096 /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
 		867F3A00296911D20035E096 /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
 		867F3A02296920220035E096 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		868A856A2972751C0031F29B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		86B218C42960311F00EF1CFD /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B218C72960311F00EF1CFD /* MyWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletApp.swift; sourceTree = "<group>"; };
 		86B218C92960311F00EF1CFD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -62,7 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				86E802102961C2B40044ADF9 /* SettingItem.swift */,
-				867F3A02296920220035E096 /* Currency.swift */,
+				863CD28E2969C56600C5243C /* Category.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -71,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				86B218C92960311F00EF1CFD /* MainView.swift */,
+				863CD28129694DC300C5243C /* Dashboard */,
 				863CD27F29694D6C00C5243C /* TabViews */,
 			);
 			path = Views;
@@ -83,7 +90,6 @@
 				863CD28429694E1700C5243C /* Statistics */,
 				863CD28329694E0700C5243C /* Add */,
 				863CD28229694DEE00C5243C /* Chart */,
-				863CD28129694DC300C5243C /* Dashboard */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -117,9 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				86E8020C296168070044ADF9 /* StatView.swift */,
-				863CD27A296936D400C5243C /* CurrencyView.swift */,
-				867F39FE2969113A0035E096 /* AccountListView.swift */,
-				867F3A00296911D20035E096 /* AddAccountView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -128,8 +131,28 @@
 			isa = PBXGroup;
 			children = (
 				86E8020E296168150044ADF9 /* SettingsView.swift */,
+				863CD27A296936D400C5243C /* CurrencyView.swift */,
+				868A856A2972751C0031F29B /* CategoryView.swift */,
+				867F39FE2969113A0035E096 /* AccountListView.swift */,
+				867F3A00296911D20035E096 /* AddAccountView.swift */,
 			);
 			path = Preference;
+			sourceTree = "<group>";
+		};
+		863CD28A296973AA00C5243C /* VMs */ = {
+			isa = PBXGroup;
+			children = (
+				863CD28C2969775B00C5243C /* DefaultDataVM.swift */,
+			);
+			path = VMs;
+			sourceTree = "<group>";
+		};
+		863CD28B296973BF00C5243C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				867F3A02296920220035E096 /* Currency.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		86B218BB2960311F00EF1CFD = {
@@ -154,6 +177,8 @@
 				86B218C72960311F00EF1CFD /* MyWalletApp.swift */,
 				863CD27E29694D5800C5243C /* Views */,
 				863CD27D29694CE000C5243C /* Helper */,
+				863CD28B296973BF00C5243C /* Models */,
+				863CD28A296973AA00C5243C /* VMs */,
 				86B218CB2960312100EF1CFD /* Assets.xcassets */,
 				86B218D02960312100EF1CFD /* Persistence.swift */,
 				86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */,
@@ -248,12 +273,15 @@
 				86E8020D296168070044ADF9 /* StatView.swift in Sources */,
 				86E8020B296167F50044ADF9 /* AddEntryView.swift in Sources */,
 				867F3A03296920220035E096 /* Currency.swift in Sources */,
+				868A856B2972751C0031F29B /* CategoryView.swift in Sources */,
 				867F3A01296911D20035E096 /* AddAccountView.swift in Sources */,
 				86E8020F296168150044ADF9 /* SettingsView.swift in Sources */,
 				86E80209296167D70044ADF9 /* ChartView.swift in Sources */,
+				863CD28F2969C56600C5243C /* Category.swift in Sources */,
 				86B218CA2960311F00EF1CFD /* MainView.swift in Sources */,
 				86E80215296885020044ADF9 /* AddTransactionView.swift in Sources */,
 				86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */,
+				863CD28D2969775B00C5243C /* DefaultDataVM.swift in Sources */,
 				867F39FF2969113A0035E096 /* AccountListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

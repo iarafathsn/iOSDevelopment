@@ -15,6 +15,7 @@ struct Currency: Identifiable {
 
 struct CurrencyList {
     static let items = [
+        Currency(symbol: "$", code: "USD"),
         Currency(symbol: "₽", code: "RUB"),
         Currency(symbol: "؋", code: "AFN"),
         Currency(symbol: "€", code: "EUR"),
@@ -64,7 +65,6 @@ struct CurrencyList {
         Currency(symbol: "kr", code: "DKK"),
         Currency(symbol: "Fr", code: "DJF"),
         Currency(symbol: "$", code: "DOP"),
-        Currency(symbol: "$", code: "USD"),
         Currency(symbol: "LE", code: "EGP"),
         Currency(symbol: "Nkf", code: "ERN"),
         Currency(symbol: "L", code: "SZL"),

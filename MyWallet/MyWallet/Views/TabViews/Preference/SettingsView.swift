@@ -26,7 +26,6 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .font(.system(size: 30, weight: .semibold, design: .rounded))
-            
         }
     }
 }
@@ -35,10 +34,12 @@ struct SettingDetailView: View {
     var type: SettingType
     
     var body: some View {
-        if type == .Currency {
+        switch type {
+        case .Currency:
             CurrencyView()
-        }
-        else {
+        case .Categories:
+            CategoryView()
+        default:
             Text("Default view")
         }
     }
