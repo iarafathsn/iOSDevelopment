@@ -8,32 +8,76 @@
 import SwiftUI
 
 struct AccountListView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
+    
     @State private var showingSheet = false
     
     var body: some View {
-        VStack {
-            Text("Account List View")
+        VStack(alignment: .leading) {
+            Text("Total Balance: \(self.totalBalance()) \(UserDefaultHelper.shared.getCurrency().code)")
+                .foregroundColor(.gray)
+                .padding(.horizontal)
+                .font(.system(size: 18, weight: .regular, design: .serif))
+            
+            List {
+                ForEach(account) { account in
+                    HStack {
+                        ZStack {
+                            Circle()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(UtilityHelper.shared.getColorFromDBColor(account: account))
+                            Image(systemName: account.imageName!)
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                        }
+                        
+                        Text(account.name!)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                    }
+                }
+                .onDelete(perform: deleteAccount)
+            }
+            .font(.system(size: 24, weight: .semibold, design: .rounded))
         }
+        .navigationViewStyle(.stack)
+        .navigationTitle("Accounts")
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    print("Add account pressed")
+                    Logger.i("Add account pressed")
                     showingSheet.toggle()
                 } label: {
-                    ZStack {
-                        Circle()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.blue)
-                        Image(systemName: "plus")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.white)
-                    }
+                    Label("Add", systemImage: "plus.circle")
                 }
                 .sheet(isPresented: $showingSheet) {
                     AddAccountView()
                 }
             }
+        }
+    }
+    
+    private func totalBalance() -> String {
+        var result: Double = 0.0
+        
+        for item in account {
+            result += item.balance
+        }
+        
+        let resultString = "\(Double(round(100 * result) / 100))"
+        
+        return resultString
+    }
+    
+    private func deleteAccount(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { account[$0] }.forEach(managedObjectContext.delete)
+            DataController.shared.save(context: managedObjectContext)
         }
     }
 }

@@ -9,12 +9,7 @@ import SwiftUI
 import CoreData
 
 struct MainView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @Environment(\.managedObjectContext) private var manageObjectContext
     
     var body: some View {
         TabView {
@@ -50,6 +45,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        MainView().environment(\.managedObjectContext, DataController.shared.container.viewContext)
     }
 }

@@ -19,13 +19,13 @@ struct AddTransactionView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button("Cancel") {
-                        print("Cancel pressed")
+                        Logger.i("Cancel pressed")
                         dismiss()
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        print("Add pressed")
+                        Logger.i("Add pressed")
                         dismiss()
                     }
                 }

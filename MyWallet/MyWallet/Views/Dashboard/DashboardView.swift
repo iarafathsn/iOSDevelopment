@@ -20,7 +20,7 @@ struct DashboardView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        print("Add pressed")
+                        Logger.i("Add pressed")
                         showingSheet.toggle()
                     } label: {
                         ZStack {

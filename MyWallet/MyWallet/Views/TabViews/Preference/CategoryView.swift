@@ -43,8 +43,7 @@ struct SubCategoryView: View {
     let subCategory: [SubCategory] = Categories.subList
     
     var body: some View {
-//        let subcategoryList: [SubCategory] = Categories.subList.filter( $0.parentType == catType )
-        
+   
         VStack {
             List(subCategory) { item in
                 if item.parentType == catType {

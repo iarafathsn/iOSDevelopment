@@ -13,16 +13,18 @@
 		867F39FF2969113A0035E096 /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F39FE2969113A0035E096 /* AccountListView.swift */; };
 		867F3A01296911D20035E096 /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F3A00296911D20035E096 /* AddAccountView.swift */; };
 		867F3A03296920220035E096 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F3A02296920220035E096 /* Currency.swift */; };
-		867F52DA2972B72B0050E6FE /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52D92972B72B0050E6FE /* Account.swift */; };
+		867F52DA2972B72B0050E6FE /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52D92972B72B0050E6FE /* AccountModel.swift */; };
 		867F52DC2972BA5E0050E6FE /* AddAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52DB2972BA5E0050E6FE /* AddAccountVM.swift */; };
 		867F52E02972BC420050E6FE /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52DF2972BC420050E6FE /* UserDefaultHelper.swift */; };
 		867F52E22972C2000050E6FE /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52E12972C2000050E6FE /* Logger.swift */; };
+		867F52E9297407860050E6FE /* UtilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52E8297407860050E6FE /* UtilityHelper.swift */; };
+		867F52EB297422C70050E6FE /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52EA297422C70050E6FE /* EditAccountView.swift */; };
 		868A856B2972751C0031F29B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A856A2972751C0031F29B /* CategoryView.swift */; };
 		86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C72960311F00EF1CFD /* MyWalletApp.swift */; };
 		86B218CA2960311F00EF1CFD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C92960311F00EF1CFD /* MainView.swift */; };
 		86B218CC2960312100EF1CFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CB2960312100EF1CFD /* Assets.xcassets */; };
 		86B218CF2960312100EF1CFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CE2960312100EF1CFD /* Preview Assets.xcassets */; };
-		86B218D12960312100EF1CFD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D02960312100EF1CFD /* Persistence.swift */; };
+		86B218D12960312100EF1CFD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D02960312100EF1CFD /* DataController.swift */; };
 		86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */; };
 		86E80207296167A40044ADF9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80206296167A40044ADF9 /* DashboardView.swift */; };
 		86E80209296167D70044ADF9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80208296167D70044ADF9 /* ChartView.swift */; };
@@ -40,17 +42,19 @@
 		867F39FE2969113A0035E096 /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
 		867F3A00296911D20035E096 /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
 		867F3A02296920220035E096 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		867F52D92972B72B0050E6FE /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		867F52D92972B72B0050E6FE /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		867F52DB2972BA5E0050E6FE /* AddAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountVM.swift; sourceTree = "<group>"; };
 		867F52DF2972BC420050E6FE /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		867F52E12972C2000050E6FE /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		867F52E8297407860050E6FE /* UtilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityHelper.swift; sourceTree = "<group>"; };
+		867F52EA297422C70050E6FE /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
 		868A856A2972751C0031F29B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		86B218C42960311F00EF1CFD /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B218C72960311F00EF1CFD /* MyWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletApp.swift; sourceTree = "<group>"; };
 		86B218C92960311F00EF1CFD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86B218CB2960312100EF1CFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86B218CE2960312100EF1CFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		86B218D02960312100EF1CFD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		86B218D02960312100EF1CFD /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		86B218D32960312100EF1CFD /* MyWallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWallet.xcdatamodel; sourceTree = "<group>"; };
 		86E80206296167A40044ADF9 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		86E80208296167D70044ADF9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -75,11 +79,9 @@
 		863CD27D29694CE000C5243C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				86E802102961C2B40044ADF9 /* SettingItem.swift */,
-				863CD28E2969C56600C5243C /* Category.swift */,
-				867F52D92972B72B0050E6FE /* Account.swift */,
 				867F52DF2972BC420050E6FE /* UserDefaultHelper.swift */,
 				867F52E12972C2000050E6FE /* Logger.swift */,
+				867F52E8297407860050E6FE /* UtilityHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -145,6 +147,7 @@
 				863CD27A296936D400C5243C /* CurrencyView.swift */,
 				868A856A2972751C0031F29B /* CategoryView.swift */,
 				867F39FE2969113A0035E096 /* AccountListView.swift */,
+				867F52EA297422C70050E6FE /* EditAccountView.swift */,
 				867F3A00296911D20035E096 /* AddAccountView.swift */,
 			);
 			path = Preference;
@@ -162,9 +165,21 @@
 		863CD28B296973BF00C5243C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				86E802102961C2B40044ADF9 /* SettingItem.swift */,
+				863CD28E2969C56600C5243C /* Category.swift */,
+				867F52D92972B72B0050E6FE /* AccountModel.swift */,
 				867F3A02296920220035E096 /* Currency.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		867F52E3297333320050E6FE /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				86B218D02960312100EF1CFD /* DataController.swift */,
+				86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */,
+			);
+			path = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		86B218BB2960311F00EF1CFD = {
@@ -191,9 +206,8 @@
 				863CD27D29694CE000C5243C /* Helper */,
 				863CD28B296973BF00C5243C /* Models */,
 				863CD28A296973AA00C5243C /* VMs */,
+				867F52E3297333320050E6FE /* CoreDataModel */,
 				86B218CB2960312100EF1CFD /* Assets.xcassets */,
-				86B218D02960312100EF1CFD /* Persistence.swift */,
-				86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */,
 				86B218CD2960312100EF1CFD /* Preview Content */,
 			);
 			path = MyWallet;
@@ -280,9 +294,10 @@
 				86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */,
 				867F52E22972C2000050E6FE /* Logger.swift in Sources */,
 				86E80207296167A40044ADF9 /* DashboardView.swift in Sources */,
-				86B218D12960312100EF1CFD /* Persistence.swift in Sources */,
+				86B218D12960312100EF1CFD /* DataController.swift in Sources */,
 				863CD27B296936D400C5243C /* CurrencyView.swift in Sources */,
 				86E802112961C2B40044ADF9 /* SettingItem.swift in Sources */,
+				867F52EB297422C70050E6FE /* EditAccountView.swift in Sources */,
 				86E8020D296168070044ADF9 /* StatView.swift in Sources */,
 				86E8020B296167F50044ADF9 /* AddEntryView.swift in Sources */,
 				867F3A03296920220035E096 /* Currency.swift in Sources */,
@@ -297,8 +312,9 @@
 				867F52E02972BC420050E6FE /* UserDefaultHelper.swift in Sources */,
 				86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */,
 				863CD28D2969775B00C5243C /* AddCurrencyVM.swift in Sources */,
-				867F52DA2972B72B0050E6FE /* Account.swift in Sources */,
+				867F52DA2972B72B0050E6FE /* AccountModel.swift in Sources */,
 				867F39FF2969113A0035E096 /* AccountListView.swift in Sources */,
+				867F52E9297407860050E6FE /* UtilityHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,12 +446,12 @@
 				DEVELOPMENT_TEAM = WQLF9GWGWB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "My Wallet";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,12 +477,12 @@
 				DEVELOPMENT_TEAM = WQLF9GWGWB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "My Wallet";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct MyWalletApp: App {
-    let persistenceController = PersistenceController.shared
+    let dataController = DataController.shared
 
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
