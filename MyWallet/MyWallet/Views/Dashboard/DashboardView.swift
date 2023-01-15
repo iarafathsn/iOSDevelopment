@@ -8,30 +8,32 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
+    
     @State private var showingSheet = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Dashboard View")
-                    .foregroundColor(.red)
-                    .font(.system(size: 50, weight: .bold))
+            Form {
+                Section {
+                    Text("Balance")
+                        .font(.system(size: 24, weight: .bold))
+                    
+                    Text("\(UserDefaultHelper.shared.getCurrency().code) \(UtilityHelper.shared.totalBalance(account: account))")
+                }
+                
+                Section {
+                    AccountCellView(account: _account)
+                }
             }
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        Logger.i("Add pressed")
+                        Logger.i("Add Transaction pressed")
                         showingSheet.toggle()
                     } label: {
-                        ZStack {
-                            Circle()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.blue)
-                            Image(systemName: "plus")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(.white)
-                        }
+                        Label("Add", systemImage: "plus.circle")
                     }
                     .sheet(isPresented: $showingSheet) {
                         AddTransactionView()

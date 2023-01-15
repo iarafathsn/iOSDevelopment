@@ -20,6 +20,7 @@
 		867F52E9297407860050E6FE /* UtilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52E8297407860050E6FE /* UtilityHelper.swift */; };
 		867F52EB297422C70050E6FE /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52EA297422C70050E6FE /* EditAccountView.swift */; };
 		868A856B2972751C0031F29B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A856A2972751C0031F29B /* CategoryView.swift */; };
+		8695A41B297457CA007EE76B /* AccountCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8695A41A297457CA007EE76B /* AccountCellView.swift */; };
 		86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C72960311F00EF1CFD /* MyWalletApp.swift */; };
 		86B218CA2960311F00EF1CFD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C92960311F00EF1CFD /* MainView.swift */; };
 		86B218CC2960312100EF1CFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CB2960312100EF1CFD /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		867F52E8297407860050E6FE /* UtilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityHelper.swift; sourceTree = "<group>"; };
 		867F52EA297422C70050E6FE /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
 		868A856A2972751C0031F29B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		8695A41A297457CA007EE76B /* AccountCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCellView.swift; sourceTree = "<group>"; };
 		86B218C42960311F00EF1CFD /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B218C72960311F00EF1CFD /* MyWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletApp.swift; sourceTree = "<group>"; };
 		86B218C92960311F00EF1CFD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				86E80206296167A40044ADF9 /* DashboardView.swift */,
+				8695A41A297457CA007EE76B /* AccountCellView.swift */,
 				86E80214296885020044ADF9 /* AddTransactionView.swift */,
 			);
 			path = Dashboard;
@@ -291,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8695A41B297457CA007EE76B /* AccountCellView.swift in Sources */,
 				86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */,
 				867F52E22972C2000050E6FE /* Logger.swift in Sources */,
 				86E80207296167A40044ADF9 /* DashboardView.swift in Sources */,
