@@ -40,6 +40,19 @@ struct DataController {
     func addAccount(accountModel: AccountModel, context: NSManagedObjectContext) {
         let account = Account(context: context)
         account.id = UUID()
+        
+        Logger.i("Saving data for Account \(accountModel.name)")
+        
+        self.addOrModify(account: account, accountModel: accountModel, context: context)
+    }
+    
+    func editAccount(account: Account, accountModel: AccountModel, context: NSManagedObjectContext) {
+        Logger.i("Updating data for Account \(accountModel.name)")
+        
+        self.addOrModify(account: account, accountModel: accountModel, context: context)
+    }
+    
+    private func addOrModify(account: Account, accountModel: AccountModel, context: NSManagedObjectContext) {
         account.name = accountModel.name
         account.balance = accountModel.balance
         account.imageName = accountModel.imageName
@@ -66,15 +79,6 @@ struct DataController {
         account.colorGreen = green
         account.colorBlue = blue
         account.colorAlpha = alpha
-        
-        save(context: context)
-    }
-    
-    func editAccount(account: Account, name: String, type: String, balance: Double, imageName: String, context: NSManagedObjectContext) {
-        account.name = name
-        account.type = type
-        account.balance = balance
-        account.imageName = imageName
         
         save(context: context)
     }

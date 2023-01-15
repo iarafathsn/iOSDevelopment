@@ -22,43 +22,42 @@ struct AddAccountView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section("General") {
-                    HStack {
-                        Text("Account Name")
-                        Spacer()
-                        TextField("Name", text: $accountName)
-                            .lineLimit(1)
-                            .cornerRadius(10)
-                            .multilineTextAlignment(.trailing)
-                            .focused($isInputActive)
-                    }
-                    
-                    HStack {
-                        Text("Current Balance")
-                        Spacer()
-                        TextField("Balance", value: $accountBalance, format: .number)
-                            .lineLimit(1)
-                            .cornerRadius(10)
-                            .multilineTextAlignment(.trailing)
-                            .keyboardType(.decimalPad)
-                            .focused($isInputActive)
-                    }
-                    
-                    HStack {
-                        Picker("Type", selection: $accountType) {
-                            ForEach(typeItems, id: \.self) {
-                                Text($0.name)
-                            }
-                        }
-                    }
-                    
-                    HStack {
-                        VStack {
-                            ColorPicker("Color", selection: $accountColor)
+                HStack {
+                    Text("Account Name")
+                    Spacer()
+                    TextField("Name", text: $accountName)
+                        .lineLimit(1)
+                        .cornerRadius(10)
+                        .multilineTextAlignment(.trailing)
+                        .focused($isInputActive)
+                }
+                
+                HStack {
+                    Text("Current Balance")
+                    Spacer()
+                    TextField("Balance", value: $accountBalance, format: .number)
+                        .lineLimit(1)
+                        .cornerRadius(10)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
+                        .focused($isInputActive)
+                }
+                
+                HStack {
+                    Picker("Type", selection: $accountType) {
+                        ForEach(typeItems, id: \.self) { item in
+                            Text(item.name)
                         }
                     }
                 }
+                
+                HStack {
+                    VStack {
+                        ColorPicker("Color", selection: $accountColor)
+                    }
+                }
             }
+            .navigationTitle("Add Account")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {

@@ -22,19 +22,21 @@ struct AccountListView: View {
             
             List {
                 ForEach(account) { account in
-                    HStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(UtilityHelper.shared.getColorFromDBColor(account: account))
-                            Image(systemName: account.imageName!)
-                                .resizable()
-                                .frame(width: 20, height: 20)
+                    NavigationLink(destination: EditAccountView(account: account)) {
+                        HStack {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(UtilityHelper.shared.getColorFromDBColor(account: account))
+                                Image(systemName: account.imageName!)
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            }
+                            
+                            Text(account.name!)
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
                         }
-                        
-                        Text(account.name!)
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
                     }
                 }
                 .onDelete(perform: deleteAccount)
