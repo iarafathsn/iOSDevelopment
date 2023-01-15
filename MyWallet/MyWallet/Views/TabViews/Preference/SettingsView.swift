@@ -18,7 +18,7 @@ struct SettingsView: View {
                         NavigationLink(destination: SettingDetailView(type: item.type)) {
                             ZStack {
                                 Circle()
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 40, height: 40)
                                     .foregroundColor(item.color)
                                 Image(systemName: item.imageName)
                                     .resizable()
@@ -33,7 +33,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
-            .font(.system(size: 30, weight: .semibold, design: .rounded))
+            .font(.system(size: 24, weight: .semibold, design: .rounded))
         }
     }
 }

@@ -30,7 +30,7 @@ class UtilityHelper {
     }
     
     func getBalanceString(balance: Double) -> String {
-        return "\(UserDefaultHelper.shared.getCurrency().code) \(Double(round(100 * balance) / 100))"
+        return "\(Double(round(100 * balance) / 100))"
     }
 }
 

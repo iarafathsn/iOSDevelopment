@@ -12,6 +12,7 @@ struct DashboardView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
     
     @State private var showingSheet = false
+    @State private var currency = UserDefaultHelper.shared.getCurrency().code
     
     var body: some View {
         NavigationView {
@@ -20,12 +21,16 @@ struct DashboardView: View {
                     Text("Balance")
                         .font(.system(size: 24, weight: .bold))
                     
-                    Text("\(UserDefaultHelper.shared.getCurrency().code) \(UtilityHelper.shared.totalBalance(account: account))")
+                    Text("\(currency) \(UtilityHelper.shared.totalBalance(account: account))")
                 }
                 
                 Section {
                     AccountCellView(account: _account)
                 }
+            }
+            .onAppear {
+                Logger.i("Appearing Dashboard view")
+                currency = UserDefaultHelper.shared.getCurrency().code
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

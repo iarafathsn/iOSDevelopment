@@ -10,6 +10,8 @@ import SwiftUI
 struct AccountCellView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
     
+    @State private var currency = UserDefaultHelper.shared.getCurrency().code
+    
     var body: some View {
         List {
             ForEach(account) { item in
@@ -27,8 +29,11 @@ struct AccountCellView: View {
                         .font(.system(size: 24, weight: .bold))
                 }
                 
-                Text("\(UtilityHelper.shared.getBalanceString(balance: item.balance))")
+                Text("\(currency) \(UtilityHelper.shared.getBalanceString(balance: item.balance))")
             }
+        }
+        .onAppear {
+            currency = UserDefaultHelper.shared.getCurrency().code
         }
     }
 }

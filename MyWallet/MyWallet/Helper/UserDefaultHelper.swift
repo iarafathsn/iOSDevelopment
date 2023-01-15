@@ -34,6 +34,8 @@ class UserDefaultHelper {
     func setCurrency(currency: Currency) {
         mUserDefault.setValue(currency.code, forKey: UserDefaultHelper.CURRENCY_KEY)
         
+        self.currency = currency
+        
         Logger.i("Saving data \(currency.code) which symbol \(currency.symbol)")
     }
 }
