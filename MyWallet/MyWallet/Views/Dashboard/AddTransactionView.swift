@@ -17,6 +17,11 @@ struct AddTransactionView: View {
     @State private var enteredNote = ""
     @State private var enteredPayee = ""
     
+    @State private var isPresenting: Bool = false
+    
+    @State private var selectedAccount: Account?
+    @State private var selectedSubCategory: SubCategory?
+    
     @FocusState private var isInputActive: Bool
     
     var body: some View {
@@ -48,11 +53,19 @@ struct AddTransactionView: View {
                 }
                 
                 Section("General") {
-                    HStack {
-                        Text("Account")
-                        Spacer()
-                        Text("Required")
-                            .foregroundColor(.red)
+                    NavigationLink(destination: AccountSelectionView(selectedAccount: $selectedAccount)) {
+                        HStack {
+                            Text("Account")
+                            Spacer()
+
+                            if (selectedAccount != nil) {
+                                Text(selectedAccount?.name ?? "")
+                            }
+                            else {
+                                Text("Required")
+                                    .foregroundColor(.red)
+                            }
+                        }
                     }
                     
                     if selectedType == .transfer {
@@ -64,11 +77,19 @@ struct AddTransactionView: View {
                         }
                     }
                     else {
-                        HStack {
-                            Text("Category")
-                            Spacer()
-                            Text("Required")
-                                .foregroundColor(.red)
+                        NavigationLink(destination: CategorySelectionView(selectedSubCategory: $selectedSubCategory, isPresenting: $isPresenting), isActive: $isPresenting) {
+                            HStack {
+                                Text("Category")
+                                Spacer()
+                                
+                                if (selectedSubCategory != nil) {
+                                    Text(selectedSubCategory?.name ?? "")
+                                }
+                                else {
+                                    Text("Required")
+                                        .foregroundColor(.red)
+                                }
+                            }
                         }
                     }
                     
@@ -105,6 +126,7 @@ struct AddTransactionView: View {
                     isInputActive = false
                 }
             }
+            .navigationBarTitle("Add \(selectedType.rawValue)")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button("Cancel") {
