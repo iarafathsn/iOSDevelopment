@@ -62,7 +62,7 @@ struct AddAccountView: View {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {
                         Logger.i("Keyboard hide pressed")
-                        self.hideKeyboard()
+                        isInputActive = false
                     }, label: {
                         Image(systemName: "keyboard.chevron.compact.down")
                     })
@@ -96,11 +96,11 @@ struct AddAccountView: View {
     }
 }
 
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
+//extension View {
+//    func hideKeyboard() {
+//        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//    }
+//}
 
 struct AddAccountView_Previews: PreviewProvider {
     static var previews: some View {

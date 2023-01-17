@@ -20,6 +20,7 @@ struct AddTransactionView: View {
     @State private var isPresenting: Bool = false
     
     @State private var selectedAccount: Account?
+    @State private var selectedToAccount: Account?
     @State private var selectedSubCategory: SubCategory?
     
     @FocusState private var isInputActive: Bool
@@ -28,7 +29,7 @@ struct AddTransactionView: View {
         NavigationView {
             Form {
                 Section {
-                    Picker("", selection: $selectedType) {
+                    Picker("Choose transaction type", selection: $selectedType) {
                         ForEach(AddType.allCases, id: \.self) { type in
                             Text(type.rawValue)
                         }
@@ -56,38 +57,68 @@ struct AddTransactionView: View {
                     NavigationLink(destination: AccountSelectionView(selectedAccount: $selectedAccount)) {
                         HStack {
                             Text("Account")
+                                .lineLimit(1)
+                                .font(.system(size: 24, weight: .semibold))
                             Spacer()
 
                             if (selectedAccount != nil) {
                                 Text(selectedAccount?.name ?? "")
+                                    .lineLimit(1)
+                                    .font(.system(size: 20, weight: .regular))
+                                    .foregroundColor(.gray)
                             }
                             else {
                                 Text("Required")
                                     .foregroundColor(.red)
+                                    .lineLimit(1)
+                                    .font(.system(size: 20, weight: .regular))
                             }
                         }
                     }
                     
                     if selectedType == .transfer {
-                        HStack {
-                            Text("To Account")
-                            Spacer()
-                            Text("Required")
-                                .foregroundColor(.red)
+                        NavigationLink(destination: ToAccountSelectionView(exceptThisAccount: selectedAccount, selectedAccount: $selectedToAccount)) {
+                            HStack {
+                                Text("To Account")
+                                    .lineLimit(1)
+                                    .font(.system(size: 24, weight: .semibold))
+                                Spacer()
+                                
+                                if (selectedToAccount != nil) {
+                                    Text(selectedToAccount?.name ?? "")
+                                        .lineLimit(1)
+                                        .foregroundColor(.gray)
+                                        .font(.system(size: 20, weight: .regular))
+                                }
+                                else {
+                                    Text("Required")
+                                        .foregroundColor(.red)
+                                        .lineLimit(1)
+                                        .font(.system(size: 20, weight: .regular))
+                                }
+                            }
                         }
                     }
                     else {
                         NavigationLink(destination: CategorySelectionView(selectedSubCategory: $selectedSubCategory, isPresenting: $isPresenting), isActive: $isPresenting) {
                             HStack {
                                 Text("Category")
+                                    .lineLimit(1)
+                                    .font(.system(size: 24, weight: .semibold))
+                                
                                 Spacer()
                                 
                                 if (selectedSubCategory != nil) {
                                     Text(selectedSubCategory?.name ?? "")
+                                        .lineLimit(1)
+                                        .foregroundColor(.gray)
+                                        .font(.system(size: 20, weight: .regular))
                                 }
                                 else {
                                     Text("Required")
                                         .foregroundColor(.red)
+                                        .lineLimit(1)
+                                        .font(.system(size: 20, weight: .regular))
                                 }
                             }
                         }
@@ -95,40 +126,60 @@ struct AddTransactionView: View {
                     
                     DatePicker("Date & Time", selection: $selectedDate)
                 }
-                .onTapGesture {
-                    isInputActive = false
-                }
                 
                 Section("More Detail") {
                     NavigationLink(destination: AddDetail(text: $enteredNote, detailType: .note)) {
                         HStack {
                             Text("Note")
+                                .lineLimit(1)
+                                .font(.system(size: 22, weight: .semibold))
+                            
                             Spacer()
+                            
                             Text(enteredNote)
+                                .lineLimit(1)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 20, weight: .regular))
                         }
                     }
                     
                     NavigationLink(destination: AddDetail(text: $enteredPayee, detailType: .payee)) {
                         HStack {
                             Text("Payee")
+                                .lineLimit(1)
+                                .font(.system(size: 22, weight: .semibold))
+                            
                             Spacer()
+                            
                             Text(enteredPayee)
+                                .lineLimit(1)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 20, weight: .regular))
                         }
                     }
                     
                     Picker("Payment Type", selection: $paymentType) {
                         ForEach(PaymentType.allCases, id: \.self) { payType in
                             Text(payType.rawValue)
+                                .lineLimit(1)
+                                .font(.system(size: 22, weight: .semibold))
                         }
                     }
-                }
-                .onTapGesture {
-                    isInputActive = false
+                    .lineLimit(1)
+                    .font(.system(size: 22, weight: .semibold))
                 }
             }
             .navigationBarTitle("Add \(selectedType.rawValue)")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button(action: {
+                        Logger.i("Keyboard hide pressed")
+                        isInputActive = false
+                    }, label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    })
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button("Cancel") {
                         Logger.i("Cancel pressed")
                         dismiss()
@@ -190,6 +241,7 @@ struct AddDetail: View {
             TextField("", text: $text)
                 .multilineTextAlignment(.center)
                 .lineLimit(1)
+                .font(.system(size: 24, weight: .semibold))
                 .focused($isInputActive)
                 .onSubmit {
                     Logger.i("Finished")

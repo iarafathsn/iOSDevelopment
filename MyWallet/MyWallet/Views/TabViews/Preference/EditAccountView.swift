@@ -78,7 +78,7 @@ struct EditAccountView: View {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 Button(action: {
                     Logger.i("Keyboard hide pressed")
-                    self.hideKeyboard()
+                    isInputActive = false
                 }, label: {
                     Image(systemName: "keyboard.chevron.compact.down")
                 })

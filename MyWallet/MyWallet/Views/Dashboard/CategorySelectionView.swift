@@ -24,7 +24,8 @@ struct CategorySelectionView: View {
                                 .foregroundColor(item.color)
                             Image(systemName: item.image)
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20)
                         }
                         
                         Text(item.name)
@@ -35,7 +36,7 @@ struct CategorySelectionView: View {
             }
         }
         .navigationTitle("Categories")
-        .font(.system(size: 30, weight: .semibold, design: .rounded))
+        .font(.system(size: 24, weight: .semibold, design: .rounded))
     }
 }
 
@@ -53,31 +54,30 @@ struct SubCategorySelectionView: View {
         VStack {
             List(subCategory) { item in
                 if item.parentType == catType {
-                    Button {
+                    HStack(spacing: 10) {
+                        ZStack {
+                            Circle()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(color)
+                            Image(systemName: item.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20)
+                        }
+                        
+                        Text(item.name)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(2)
+                    }
+                    .onTapGesture {
                         selectedSubCategory = item
                         isPresenting = false
                         Logger.i("Sub-Category selected: \(item.name)")
-                    } label: {
-                        HStack(spacing: 10) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(color)
-                                Image(systemName: item.image)
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                            }
-                            
-                            Text(item.name)
-                                .minimumScaleFactor(0.5)
-                                .lineLimit(2)
-                        }
                     }
-
                 }
             }
         }
         .navigationTitle("Sub-Categories")
-        .font(.system(size: 30, weight: .semibold, design: .rounded))
+        .font(.system(size: 24, weight: .semibold, design: .rounded))
     }
 }

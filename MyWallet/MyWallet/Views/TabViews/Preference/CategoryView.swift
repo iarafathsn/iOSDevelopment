@@ -21,7 +21,8 @@ struct CategoryView: View {
                                 .foregroundColor(item.color)
                             Image(systemName: item.image)
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20)
                         }
                         
                         Text(item.name)
@@ -32,7 +33,7 @@ struct CategoryView: View {
             }
         }
         .navigationTitle("Categories")
-        .font(.system(size: 30, weight: .semibold, design: .rounded))
+        .font(.system(size: 24, weight: .semibold, design: .rounded))
     }
 }
 
@@ -43,7 +44,6 @@ struct SubCategoryView: View {
     let subCategory: [SubCategory] = Categories.subList
     
     var body: some View {
-   
         VStack {
             List(subCategory) { item in
                 if item.parentType == catType {
@@ -54,7 +54,8 @@ struct SubCategoryView: View {
                                 .foregroundColor(color)
                             Image(systemName: item.image)
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20)
                         }
                         
                         Text(item.name)
@@ -65,7 +66,7 @@ struct SubCategoryView: View {
             }
         }
         .navigationTitle("Sub-Categories")
-        .font(.system(size: 30, weight: .semibold, design: .rounded))
+        .font(.system(size: 24, weight: .semibold, design: .rounded))
     }
 }
 

@@ -23,6 +23,7 @@
 		8695A41B297457CA007EE76B /* AccountCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8695A41A297457CA007EE76B /* AccountCellView.swift */; };
 		86A1788929754F4900327FA6 /* AccountSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1788829754F4900327FA6 /* AccountSelectionView.swift */; };
 		86A1788B2975626F00327FA6 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1788A2975626F00327FA6 /* CategorySelectionView.swift */; };
+		86A1788D2975B8A300327FA6 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1788C2975B8A300327FA6 /* TransactionModel.swift */; };
 		86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C72960311F00EF1CFD /* MyWalletApp.swift */; };
 		86B218CA2960311F00EF1CFD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C92960311F00EF1CFD /* MainView.swift */; };
 		86B218CC2960312100EF1CFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CB2960312100EF1CFD /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		8695A41A297457CA007EE76B /* AccountCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCellView.swift; sourceTree = "<group>"; };
 		86A1788829754F4900327FA6 /* AccountSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionView.swift; sourceTree = "<group>"; };
 		86A1788A2975626F00327FA6 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		86A1788C2975B8A300327FA6 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		86B218C42960311F00EF1CFD /* MyWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B218C72960311F00EF1CFD /* MyWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletApp.swift; sourceTree = "<group>"; };
 		86B218C92960311F00EF1CFD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				863CD28E2969C56600C5243C /* Category.swift */,
 				867F52D92972B72B0050E6FE /* AccountModel.swift */,
 				867F3A02296920220035E096 /* Currency.swift */,
+				86A1788C2975B8A300327FA6 /* TransactionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */,
 				867F52E22972C2000050E6FE /* Logger.swift in Sources */,
 				86E80207296167A40044ADF9 /* DashboardView.swift in Sources */,
+				86A1788D2975B8A300327FA6 /* TransactionModel.swift in Sources */,
 				86B218D12960312100EF1CFD /* DataController.swift in Sources */,
 				86A1788B2975626F00327FA6 /* CategorySelectionView.swift in Sources */,
 				863CD27B296936D400C5243C /* CurrencyView.swift in Sources */,

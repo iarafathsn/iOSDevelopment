@@ -28,6 +28,7 @@ struct DataController {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
     
+    // MARK: - Save
     func save(context: NSManagedObjectContext) {
         do {
             try context.save()
@@ -37,6 +38,7 @@ struct DataController {
         }
     }
     
+    // MARK: - Account
     func addAccount(accountModel: AccountModel, context: NSManagedObjectContext) {
         let account = Account(context: context)
         account.id = UUID()
@@ -79,6 +81,18 @@ struct DataController {
         account.colorGreen = green
         account.colorBlue = blue
         account.colorAlpha = alpha
+        
+        save(context: context)
+    }
+    
+    // MARK: - Transaction
+    func addTransaction(transactionModel: TransactionModel, context: NSManagedObjectContext) {
+        let transaction = Transaction(context: context)
+        transaction.id = UUID()
+        
+        Logger.i("Saving data for Account Name: \(transactionModel.accountName)")
+        
+        
         
         save(context: context)
     }
