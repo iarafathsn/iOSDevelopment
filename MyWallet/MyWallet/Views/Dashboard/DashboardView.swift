@@ -18,10 +18,16 @@ struct DashboardView: View {
         NavigationView {
             Form {
                 Section {
-                    Text("Balance")
-                        .font(.system(size: 24, weight: .bold))
-                    
-                    Text("\(currency) \(UtilityHelper.shared.totalBalance(account: account))")
+                    VStack {
+                        Text("Balance")
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Text("\(currency) \(UtilityHelper.shared.totalBalance(account: account))")
+                            .font(.title2)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(10)
                 }
                 
                 Section {

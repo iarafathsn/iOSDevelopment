@@ -18,18 +18,29 @@ struct AccountCellView: View {
                 HStack {
                     ZStack {
                         Circle()
-                            .frame(width: 40, height: 40)
+                            .frame(width: 50, height: 50)
                             .foregroundColor(Color(red: item.colorRed, green: item.colorGreen, blue: item.colorBlue, opacity: item.colorAlpha))
                         Image(systemName: item.imageName!)
                             .resizable()
-                            .frame(width: 20, height: 20)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20)
                     }
                     
-                    Text("\(item.name!)")
-                        .font(.system(size: 24, weight: .bold))
+                    VStack {
+                        Text("\(item.name!)")
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+//                            .padding(.all)
+//                            .border(Color.gray.opacity(0.5))
+                        
+                        Text("\(currency) \(UtilityHelper.shared.getBalanceString(balance: item.balance))")
+                            .font(.title2)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+//                            .padding(.all)
+//                            .border(Color.gray.opacity(0.5))
+                    }
+                    .padding(10)
                 }
-                
-                Text("\(currency) \(UtilityHelper.shared.getBalanceString(balance: item.balance))")
             }
         }
         .onAppear {
