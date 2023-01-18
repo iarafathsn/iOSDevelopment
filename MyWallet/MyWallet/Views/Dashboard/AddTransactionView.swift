@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddTransactionView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
     @State private var selectedType = AddType.expense
@@ -188,6 +189,26 @@ struct AddTransactionView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button("Save") {
                         Logger.i("Add pressed")
+                        
+                        if selectedType == .transfer {
+                            Logger.i("Type: \(selectedType.rawValue) Amount: \(selectedAmount) Account: \(selectedAccount?.name ?? "Unknown") To Account: \(selectedToAccount?.name ?? "Unknown") Date: \(selectedDate) Note: \(enteredNote) Payee: \(enteredPayee) PaymentType: \(paymentType)")
+                            
+                            if selectedAccount != nil || selectedToAccount != nil {
+                                let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, category: nil, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: selectedToAccount)
+                                
+                                DataController.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
+                            }
+                        }
+                        else {
+                            Logger.i("Type: \(selectedType.rawValue) Amount: \(selectedAmount) Account: \(selectedAccount?.name ?? "Unknown") Category: \(selectedSubCategory?.name ?? "Unknown") Date: \(selectedDate) Note: \(enteredNote) Payee: \(enteredPayee) PaymentType: \(paymentType)")
+                            
+                            if selectedAccount != nil || selectedSubCategory != nil {
+                                let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, category: selectedSubCategory?.name, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: nil)
+                                
+                                DataController.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
+                            }
+                        }
+                        
                         dismiss()
                     }
                 }

@@ -90,9 +90,29 @@ struct DataController {
         let transaction = Transaction(context: context)
         transaction.id = UUID()
         
-        Logger.i("Saving data for Account Name: \(transactionModel.accountName)")
+        Logger.i("Saving data for Account Name: \(transactionModel.account.name!)")
         
+        if transactionModel.type == AddType.transfer.rawValue {
+            transactionModel.account.balance -= transactionModel.amount
+            transactionModel.toAccount?.balance += transactionModel.amount
+            transaction.toAccountID = transactionModel.toAccount?.name // Note: should change the name to id
+        }
+        else if transactionModel.type == AddType.income.rawValue {
+            transactionModel.account.balance += transactionModel.amount
+            transaction.category = transactionModel.category
+        }
+        else {
+            transactionModel.account.balance -= transactionModel.amount
+            transaction.category = transactionModel.category
+        }
         
+        transaction.accountID = transactionModel.account.name // Note: should change the name to id
+        transaction.amount = transactionModel.amount
+        transaction.type = transactionModel.type
+        transaction.paymentType = transactionModel.paymentType
+        transaction.note = transactionModel.note
+        transaction.payee = transactionModel.payee
+        transaction.date = transactionModel.date
         
         save(context: context)
     }

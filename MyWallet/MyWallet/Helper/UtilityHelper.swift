@@ -32,6 +32,13 @@ class UtilityHelper {
     func getBalanceString(balance: Double) -> String {
         return "\(Double(round(100 * balance) / 100))"
     }
+    
+    func getDateTime(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        return dateFormatter.string(from: date)
+    }
 }
 
 

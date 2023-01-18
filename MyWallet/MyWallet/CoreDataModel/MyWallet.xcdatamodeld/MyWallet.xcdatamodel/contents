@@ -12,7 +12,7 @@
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
-        <attribute name="accountName" optional="YES" attributeType="String"/>
+        <attribute name="accountID" optional="YES" attributeType="String"/>
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -20,7 +20,7 @@
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="payee" optional="YES" attributeType="String"/>
         <attribute name="paymentType" optional="YES" attributeType="String"/>
-        <attribute name="toAccount" optional="YES" attributeType="String"/>
+        <attribute name="toAccountID" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String" defaultValueString="Expense"/>
     </entity>
 </model>
