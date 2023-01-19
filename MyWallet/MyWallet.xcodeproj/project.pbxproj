@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		861A8BAF2979955A007655A3 /* ItemListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A8BAE2979955A007655A3 /* ItemListCell.swift */; };
 		863CD27B296936D400C5243C /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD27A296936D400C5243C /* CurrencyView.swift */; };
 		863CD28D2969775B00C5243C /* AddCurrencyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD28C2969775B00C5243C /* AddCurrencyVM.swift */; };
 		863CD28F2969C56600C5243C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD28E2969C56600C5243C /* Category.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		861A8BAE2979955A007655A3 /* ItemListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCell.swift; sourceTree = "<group>"; };
 		863CD27A296936D400C5243C /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		863CD28C2969775B00C5243C /* AddCurrencyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyVM.swift; sourceTree = "<group>"; };
 		863CD28E2969C56600C5243C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				86E8020A296167F50044ADF9 /* AddEntryView.swift */,
+				861A8BAE2979955A007655A3 /* ItemListCell.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				867F52DC2972BA5E0050E6FE /* AddAccountVM.swift in Sources */,
 				86E80215296885020044ADF9 /* AddTransactionView.swift in Sources */,
 				867F52E02972BC420050E6FE /* UserDefaultHelper.swift in Sources */,
+				861A8BAF2979955A007655A3 /* ItemListCell.swift in Sources */,
 				86B218C82960311F00EF1CFD /* MyWalletApp.swift in Sources */,
 				86A1788929754F4900327FA6 /* AccountSelectionView.swift in Sources */,
 				863CD28D2969775B00C5243C /* AddCurrencyVM.swift in Sources */,
