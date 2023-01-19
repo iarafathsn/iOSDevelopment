@@ -25,7 +25,7 @@ struct EditAccountView: View {
     var body: some View {
         Form {
             HStack {
-                Text("Account Name")
+                Text("Name")
                 Spacer()
                 TextField("\(account.name!)", text: $name)
                     .lineLimit(1)
@@ -38,7 +38,7 @@ struct EditAccountView: View {
             }
             
             HStack {
-                Text("Current Balance")
+                Text("Balance")
                 Spacer()
                 TextField("\(account.balance)", value: $balance, format: .number)
                     .lineLimit(1)
@@ -73,6 +73,7 @@ struct EditAccountView: View {
                 }
             }
         }
+        .font(.system(size: 24, weight: .semibold))
         .navigationTitle("Modify Account")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {

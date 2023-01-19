@@ -27,11 +27,10 @@ struct DashboardView: View {
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(10)
                 }
                 
                 Section {
-                    AccountCellView(account: _account)
+                    DAccountView(account: _account)
                 }
             }
             .onAppear {
