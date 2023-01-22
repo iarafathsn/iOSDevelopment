@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemListCell: View {
-    let transaction: Transaction
+    let transaction: TransactionEntity
     
     var body: some View {
         VStack {
@@ -24,7 +24,7 @@ struct ItemListCell: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 else if transaction.type! == AddType.income.rawValue {
-                    Text(transaction.category!)
+                    Text(transaction.subCategory?.wrappedName ?? "Unknown")
                         .font(.title)
                     
                     Spacer()
@@ -35,7 +35,7 @@ struct ItemListCell: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 else {
-                    Text(transaction.category!)
+                    Text(transaction.subCategory?.wrappedName ?? "Unknown")
                         .font(.title)
                     
                     Spacer()
@@ -49,12 +49,12 @@ struct ItemListCell: View {
             
             HStack {
                 if transaction.type! == AddType.transfer.rawValue {
-                    Text("\(transaction.accountID!) -> \(transaction.toAccountID!)")
+                    Text("\(transaction.fromAccount?.wrappedName ?? "Unknown") -> \(transaction.toAccount?.wrappedName ?? "Unknown")")
                         .font(.title2)
                         .foregroundColor(.gray)
                 }
                 else {
-                    Text("\(transaction.accountID!)")
+                    Text(transaction.fromAccount?.wrappedName ?? "Unknown")
                         .font(.title2)
                         .foregroundColor(.gray)
                 }

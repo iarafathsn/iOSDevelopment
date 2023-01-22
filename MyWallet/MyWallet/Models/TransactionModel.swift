@@ -9,13 +9,13 @@ import SwiftUI
 
 struct TransactionModel: Identifiable {
     let id = UUID()
-    let account: Account
+    let account: AccountEntity
     let amount: Double
     let type: String
-    let category: String?
+    let subcategory: SubCategoryEntity?
     let date: Date
     let note: String
     let payee: String
     let paymentType: String
-    let toAccount: Account?
+    let toAccount: AccountEntity?
 }

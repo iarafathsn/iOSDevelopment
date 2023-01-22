@@ -20,9 +20,9 @@ struct AddTransactionView: View {
     
     @State private var isPresenting: Bool = false
     
-    @State private var selectedAccount: Account?
-    @State private var selectedToAccount: Account?
-    @State private var selectedSubCategory: SubCategory?
+    @State private var selectedAccount: AccountEntity?
+    @State private var selectedToAccount: AccountEntity?
+    @State private var selectedSubCategory: SubCategoryEntity?
     
     @FocusState private var isInputActive: Bool
     
@@ -194,7 +194,7 @@ struct AddTransactionView: View {
                             Logger.i("Type: \(selectedType.rawValue) Amount: \(selectedAmount) Account: \(selectedAccount?.name ?? "Unknown") To Account: \(selectedToAccount?.name ?? "Unknown") Date: \(selectedDate) Note: \(enteredNote) Payee: \(enteredPayee) PaymentType: \(paymentType)")
                             
                             if selectedAccount != nil || selectedToAccount != nil {
-                                let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, category: nil, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: selectedToAccount)
+                                let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, subcategory: nil, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: selectedToAccount)
                                 
                                 DataController.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
                             }
@@ -203,7 +203,7 @@ struct AddTransactionView: View {
                             Logger.i("Type: \(selectedType.rawValue) Amount: \(selectedAmount) Account: \(selectedAccount?.name ?? "Unknown") Category: \(selectedSubCategory?.name ?? "Unknown") Date: \(selectedDate) Note: \(enteredNote) Payee: \(enteredPayee) PaymentType: \(paymentType)")
                             
                             if selectedAccount != nil || selectedSubCategory != nil {
-                                let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, category: selectedSubCategory?.name, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: nil)
+                                let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, subcategory: selectedSubCategory, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: nil)
                                 
                                 DataController.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
                             }

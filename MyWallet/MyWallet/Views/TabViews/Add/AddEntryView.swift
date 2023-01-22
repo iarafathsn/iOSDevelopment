@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddEntryView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var transactionResult: FetchedResults<Transaction>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var transactionResult: FetchedResults<TransactionEntity>
     
     let loot: [Int] = [1, 2, 3]
     

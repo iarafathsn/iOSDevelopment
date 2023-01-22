@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AccountSelectionView: View {
     @Environment(\.dismiss) var dismiss
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
     @State private var showingSheet = false
     
-    @Binding var selectedAccount: Account?
+    @Binding var selectedAccount: AccountEntity?
     
     var body: some View {
         if account.count == 0 {
@@ -48,13 +48,13 @@ struct AccountSelectionView: View {
                                 ZStack {
                                     Circle()
                                         .frame(width: 40, height: 40)
-                                        .foregroundColor(Color(red: item.colorRed, green: item.colorGreen, blue: item.colorBlue, opacity: item.colorAlpha))
-                                    Image(systemName: item.imageName!)
+                                        .foregroundColor(ColorEMHelper.getColor(colorEntity: item.color!))
+                                    Image(systemName: item.wrappedImageName)
                                         .resizable()
                                         .frame(width: 20, height: 20)
                                 }
                                 
-                                Text("\(item.name!)")
+                                Text("\(item.wrappedName)")
                                     .font(.system(size: 24, weight: .bold))
                             }
                         }
@@ -74,13 +74,13 @@ struct AccountSelectionView: View {
 
 struct ToAccountSelectionView: View {
     @Environment(\.dismiss) var dismiss
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
     @State private var showingSheet = false
     
-    var exceptThisAccount: Account?
+    var exceptThisAccount: AccountEntity?
     
-    @Binding var selectedAccount: Account?
+    @Binding var selectedAccount: AccountEntity?
     
     var body: some View {
         if account.count == 0 {
@@ -116,13 +116,13 @@ struct ToAccountSelectionView: View {
                                     ZStack {
                                         Circle()
                                             .frame(width: 40, height: 40)
-                                            .foregroundColor(Color(red: item.colorRed, green: item.colorGreen, blue: item.colorBlue, opacity: item.colorAlpha))
-                                        Image(systemName: item.imageName!)
+                                            .foregroundColor(ColorEMHelper.getColor(colorEntity: item.color!))
+                                        Image(systemName: item.wrappedImageName)
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                     }
                                     
-                                    Text("\(item.name!)")
+                                    Text("\(item.wrappedName)")
                                         .font(.system(size: 24, weight: .bold))
                                 }
                             }

@@ -11,6 +11,40 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES">
+        <attribute name="balance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageName" attributeType="String"/>
+        <attribute name="initialAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ColorEntity" inverseName="accountColors" inverseEntity="ColorEntity"/>
+        <relationship name="transactionsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="fromAccount" inverseEntity="TransactionEntity"/>
+        <relationship name="transferTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="toAccount" inverseEntity="TransactionEntity"/>
+    </entity>
+    <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageName" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ColorEntity" inverseName="categoryColors" inverseEntity="ColorEntity"/>
+        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategoryEntity" inverseName="category" inverseEntity="SubCategoryEntity"/>
+    </entity>
+    <entity name="ColorEntity" representedClassName="ColorEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="alpha" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="blue" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="green" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="red" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="accountColors" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="color" inverseEntity="AccountEntity"/>
+        <relationship name="categoryColors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="color" inverseEntity="CategoryEntity"/>
+    </entity>
+    <entity name="SubCategoryEntity" representedClassName="SubCategoryEntity" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageName" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="subCategories" inverseEntity="CategoryEntity"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="subCategory" inverseEntity="TransactionEntity"/>
+    </entity>
     <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
         <attribute name="accountID" optional="YES" attributeType="String"/>
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -22,5 +56,17 @@
         <attribute name="paymentType" optional="YES" attributeType="String"/>
         <attribute name="toAccountID" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String" defaultValueString="Expense"/>
+    </entity>
+    <entity name="TransactionEntity" representedClassName="TransactionEntity" syncable="YES">
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="payee" optional="YES" attributeType="String"/>
+        <attribute name="paymentType" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="fromAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="transactionsFrom" inverseEntity="AccountEntity"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategoryEntity" inverseName="transactions" inverseEntity="SubCategoryEntity"/>
+        <relationship name="toAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="transferTo" inverseEntity="AccountEntity"/>
     </entity>
 </model>

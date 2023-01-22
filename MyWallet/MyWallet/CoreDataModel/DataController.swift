@@ -40,23 +40,34 @@ struct DataController {
     
     // MARK: - Account
     func addAccount(accountModel: AccountModel, context: NSManagedObjectContext) {
-        let account = Account(context: context)
+        let account = AccountEntity(context: context)
         account.id = UUID()
+        account.balance = accountModel.balance
         
         Logger.i("Saving data for Account \(accountModel.name)")
         
-        self.addOrModify(account: account, accountModel: accountModel, context: context)
+        let colorEntity = ColorEntity(context: context)
+        colorEntity.id = UUID()
+        
+        self.addOrModify(account: account, accountModel: accountModel, colorEntity: colorEntity, context: context)
     }
     
-    func editAccount(account: Account, accountModel: AccountModel, context: NSManagedObjectContext) {
+    func editAccount(account: AccountEntity, accountModel: AccountModel, context: NSManagedObjectContext) {
         Logger.i("Updating data for Account \(accountModel.name)")
         
-        self.addOrModify(account: account, accountModel: accountModel, context: context)
+        Logger.d("Initial amount: \(account.initialAmount) update value: \(accountModel.balance) currentBalance: \(account.balance)")
+        
+        account.balance += (accountModel.balance - account.initialAmount)
+        
+        Logger.d("Updated current balance: \(account.balance)")
+        
+        self.addOrModify(account: account, accountModel: accountModel, colorEntity: account.color!, context: context)
     }
     
-    private func addOrModify(account: Account, accountModel: AccountModel, context: NSManagedObjectContext) {
+    
+    private func addOrModify(account: AccountEntity, accountModel: AccountModel, colorEntity: ColorEntity, context: NSManagedObjectContext) {
         account.name = accountModel.name
-        account.balance = accountModel.balance
+        account.initialAmount = accountModel.balance
         account.imageName = accountModel.imageName
         account.type = accountModel.type
         
@@ -76,18 +87,19 @@ struct DataController {
         }
         
         // RGBA from Color ============
+        colorEntity.red = red
+        colorEntity.green = green
+        colorEntity.blue = blue
+        colorEntity.alpha = alpha
         
-        account.colorRed = red
-        account.colorGreen = green
-        account.colorBlue = blue
-        account.colorAlpha = alpha
+        account.color = colorEntity
         
         save(context: context)
     }
     
     // MARK: - Transaction
     func addTransaction(transactionModel: TransactionModel, context: NSManagedObjectContext) {
-        let transaction = Transaction(context: context)
+        let transaction = TransactionEntity(context: context)
         transaction.id = UUID()
         
         Logger.i("Saving data for Account Name: \(transactionModel.account.name!)")
@@ -95,18 +107,19 @@ struct DataController {
         if transactionModel.type == AddType.transfer.rawValue {
             transactionModel.account.balance -= transactionModel.amount
             transactionModel.toAccount?.balance += transactionModel.amount
-            transaction.toAccountID = transactionModel.toAccount?.name // Note: should change the name to id
+            
+            transaction.toAccount = transactionModel.toAccount
         }
         else if transactionModel.type == AddType.income.rawValue {
             transactionModel.account.balance += transactionModel.amount
-            transaction.category = transactionModel.category
+            transaction.subCategory = transactionModel.subcategory
         }
         else {
             transactionModel.account.balance -= transactionModel.amount
-            transaction.category = transactionModel.category
+            transaction.subCategory = transactionModel.subcategory
         }
         
-        transaction.accountID = transactionModel.account.name // Note: should change the name to id
+        transaction.fromAccount = transactionModel.account
         transaction.amount = transactionModel.amount
         transaction.type = transactionModel.type
         transaction.paymentType = transactionModel.paymentType
@@ -115,6 +128,57 @@ struct DataController {
         transaction.date = transactionModel.date
         
         save(context: context)
+    }
+    
+    // MARK: - Relationship Model
+    func addInitCategory(name: String, imageName: String, color: Color, subCatDict: [String: String]) {
+        let category = CategoryEntity(context: self.container.viewContext)
+        category.id = UUID()
+        category.name = name
+        category.imageName = imageName
+        
+        // RGBA from Color ============
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        let isSuccess = UIColor(color).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        if isSuccess == true {
+            Logger.i("Get color successfully")
+        }
+        else {
+            Logger.e("Unable to get color")
+        }
+        
+        // RGBA from Color ============
+        
+        let colorEntry = ColorEntity(context: self.container.viewContext)
+        colorEntry.id = UUID()
+        colorEntry.red = red
+        colorEntry.green = green
+        colorEntry.blue = blue
+        colorEntry.alpha = alpha
+        
+        category.color = colorEntry
+        
+        var subCategories: [SubCategoryEntity] = [SubCategoryEntity]()
+        
+        for subKey in subCatDict {
+            let subCatEntity = SubCategoryEntity(context: self.container.viewContext)
+            subCatEntity.id = UUID()
+            subCatEntity.name = subKey.key
+            subCatEntity.imageName = subKey.value
+            
+//            subCatEntity.category = category
+            
+            subCategories.append(subCatEntity)
+        }
+        
+        category.subCategories = NSSet(array: subCategories)
+        
+        self.save(context: self.container.viewContext)
     }
 }
 

@@ -11,7 +11,7 @@ struct EditAccountView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
-    var account: FetchedResults<Account>.Element
+    var account: FetchedResults<AccountEntity>.Element
     
     private let typeItems = AccountTypes.items
     
@@ -40,7 +40,7 @@ struct EditAccountView: View {
             HStack {
                 Text("Balance")
                 Spacer()
-                TextField("\(account.balance)", value: $balance, format: .number)
+                TextField("\(account.initialAmount)", value: $balance, format: .number)
                     .lineLimit(1)
                     .cornerRadius(10)
                     .multilineTextAlignment(.trailing)
@@ -68,7 +68,7 @@ struct EditAccountView: View {
                 VStack {
                     ColorPicker("Color", selection: $color)
                         .onAppear {
-                            color = UtilityHelper.shared.getColorFromDBColor(account: account)
+                            color = ColorEMHelper.getColor(colorEntity: account.color!)
                         }
                 }
             }

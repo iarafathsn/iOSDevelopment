@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
     @State private var showingSheet = false
     
@@ -27,7 +27,7 @@ struct AccountListView: View {
                             ZStack {
                                 Circle()
                                     .frame(width: 50, height: 50)
-                                    .foregroundColor(UtilityHelper.shared.getColorFromDBColor(account: account))
+                                    .foregroundColor(ColorEMHelper.getColor(colorEntity: account.color!))
                                 Image(systemName: account.imageName!)
                                     .resizable()
                                     .frame(width: 20, height: 20)

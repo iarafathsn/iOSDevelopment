@@ -17,7 +17,7 @@ class UtilityHelper {
         return Color(red: account.colorRed, green: account.colorGreen, blue: account.colorBlue, opacity: account.colorAlpha)
     }
     
-    func totalBalance(account: FetchedResults<Account>) -> String {
+    func totalBalance(account: FetchedResults<AccountEntity>) -> String {
         var result: Double = 0.0
         
         for item in account {
@@ -38,6 +38,22 @@ class UtilityHelper {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         return dateFormatter.string(from: date)
+    }
+    
+    func initilizeCategory() {
+        let categories = Categories.mainList
+        let subcategories = Categories.subList
+
+        for category in categories {
+            let subList = subcategories.filter{ $0.parentType == category.type }
+            var subDict = [String: String]()
+            
+            for sub in subList {
+                subDict[sub.name] = sub.image
+            }
+            
+            DataController.shared.addInitCategory(name: category.name, imageName: category.image, color: category.color, subCatDict: subDict)
+        }
     }
 }
 

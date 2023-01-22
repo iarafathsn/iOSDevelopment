@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct DAccountCell: View {
-    let account: Account
+    let account: AccountEntity
     
     @State private var currency = UserDefaultHelper.shared.getCurrency().code
     @State private var color: Color = .red
     
     var body: some View {
         HStack {
-            Image(systemName: account.imageName!)
+            Image(systemName: account.wrappedImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30)
@@ -24,7 +24,7 @@ struct DAccountCell: View {
                 .cornerRadius(10)
             
             VStack {
-                Text("\(account.name!)")
+                Text("\(account.wrappedName)")
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -35,7 +35,8 @@ struct DAccountCell: View {
         }
         .onAppear {
             currency = UserDefaultHelper.shared.getCurrency().code
-            color = UtilityHelper.shared.getColorFromDBColor(account: account)
+            color = ColorEMHelper.getColor(colorEntity: account.color!)
+            Logger.i("Dashboard - Account Cell Appear")
         }
     }
 }

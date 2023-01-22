@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<Account>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
     @State private var showingSheet = false
     @State private var currency = UserDefaultHelper.shared.getCurrency().code
@@ -30,7 +30,13 @@ struct DashboardView: View {
                 }
                 
                 Section {
-                    DAccountView(account: _account)
+                    List {
+                        ForEach(account) { item in
+                            NavigationLink(destination: EditAccountView(account: item)) {
+                                DAccountCell(account: item)
+                            }
+                        }
+                    }
                 }
             }
             .onAppear {

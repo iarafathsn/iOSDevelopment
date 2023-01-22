@@ -8,26 +8,36 @@
 import SwiftUI
 
 struct CategoryView: View {
-    let categoryItems: [Category] = Categories.mainList
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors: []) var categoryEntity: FetchedResults<CategoryEntity>
     
     var body: some View {
         VStack {
-            List(categoryItems) { item in
-                HStack(spacing: 10) {
-                    NavigationLink(destination: SubCategoryView(catType: item.type, color: item.color)) {
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(item.color)
-                            Image(systemName: item.image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20)
+            if categoryEntity.count == 0 {
+                Button("Refresh Category") {
+                    UtilityHelper.shared.initilizeCategory()
+                }
+                
+                Spacer()
+            }
+            else {
+                List(categoryEntity) { category in
+                    HStack(spacing: 10) {
+                        NavigationLink(destination: SubCategoryListView(color: ColorEMHelper.getColor(colorEntity: category.color!), subCategory: category.subcategoryArray)) {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(ColorEMHelper.getColor(colorEntity: category.color!))
+                                Image(systemName: category.wrappedImgaeName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20)
+                            }
+
+                            Text(category.wrappedName)
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
                         }
-                        
-                        Text(item.name)
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
                     }
                 }
             }
@@ -37,6 +47,7 @@ struct CategoryView: View {
     }
 }
 
+// MARK: Unused.
 struct SubCategoryView: View {
     var catType: CategoryType
     var color: Color

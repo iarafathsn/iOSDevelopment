@@ -24,6 +24,7 @@ struct CurrencyView: View {
                 Text("\(defaultDataVM.setCurrency(index: defaultDataVM.currencyIndex).symbol)")
             }
         }
+        .font(.title)
         .navigationTitle("Currency")
     }
 }
