@@ -11,7 +11,6 @@ struct DashboardView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
-    @State private var showingSheet = false
     @State private var currency = UserDefaultHelper.shared.getCurrency().code
     
     var body: some View {
@@ -42,19 +41,7 @@ struct DashboardView: View {
             .onAppear {
                 Logger.i("Appearing Dashboard view")
                 currency = UserDefaultHelper.shared.getCurrency().code
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        Logger.i("Add Transaction pressed")
-                        showingSheet.toggle()
-                    } label: {
-                        Label("Add", systemImage: "plus.circle")
-                    }
-                    .sheet(isPresented: $showingSheet) {
-                        AddTransactionView()
-                    }
-                }
+                UtilityHelper.shared.setDefaultDate()
             }
         }
     }

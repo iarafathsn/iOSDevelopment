@@ -10,7 +10,10 @@ import SwiftUI
 class UtilityHelper {
     static let shared = UtilityHelper()
     
+    private var previousDate: Date
+    
     private init() {
+        previousDate = Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date()
     }
     
     func totalBalance(account: FetchedResults<AccountEntity>) -> String {
@@ -27,6 +30,18 @@ class UtilityHelper {
     
     func getBalanceString(balance: Double) -> String {
         return "\(Double(round(100 * balance) / 100))"
+    }
+    
+    func isSameDay(date: Date) -> Bool {
+        let order = Calendar.current.compare(date, to: previousDate, toGranularity: .day)
+        previousDate = date
+        
+        if order == .orderedSame {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     func getDateTime(date: Date) -> String {
@@ -64,6 +79,38 @@ class UtilityHelper {
             
             DataController.shared.addInitCategory(name: category.name, imageName: category.image, color: category.color, subCatDict: subDict)
         }
+    }
+    
+    // MARK: - Transaction Cell Helper
+    func getTransactionColor(transaction: TransactionEntity) -> Color {
+        if transaction.type == AddType.transfer.rawValue {
+            return ColorEMHelper.getColor(colorEntity: (transaction.toAccount?.color)!)
+        }
+        else {
+            return ColorEMHelper.getColor(colorEntity: (transaction.subCategory?.category?.color)!)
+        }
+    }
+    
+    func getTransactionTitle(transaction: TransactionEntity) -> String {
+        if transaction.type == AddType.transfer.rawValue {
+            return "Withdraw"
+        }
+        else {
+            return transaction.subCategory?.wrappedName ?? "Unknown"
+        }
+    }
+    
+    func getImageName(transaction: TransactionEntity) -> String {
+        if transaction.type == AddType.transfer.rawValue {
+            return "arrow.left.arrow.right"
+        }
+        else {
+            return transaction.subCategory?.wrappedImageName ?? "arrow.counterclockwise"
+        }
+    }
+    
+    func setDefaultDate() {
+        previousDate = Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date()
     }
 }
 

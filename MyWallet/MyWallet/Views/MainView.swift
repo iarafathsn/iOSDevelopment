@@ -23,10 +23,10 @@ struct MainView: View {
                     Image(systemName: "chart.pie")
                     Text("Chart")
                 }
-            TransactionListView()
+            RecordListView()
                 .tabItem {
                     Image(systemName: "list.bullet")
-                    Text("Transactions")
+                    Text("Records")
                 }
             StatView()
                 .tabItem {

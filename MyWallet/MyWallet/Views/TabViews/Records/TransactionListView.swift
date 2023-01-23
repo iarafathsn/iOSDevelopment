@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TransactionListView: View {
+struct RecordListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var transactionResult: FetchedResults<TransactionEntity>
     
@@ -25,13 +25,16 @@ struct TransactionListView: View {
             }
         }
         else {
-            List {
-                ForEach(transactionResult) { item in
+            NavigationView {
+                List(transactionResult) { item in
                     ItemListCell(transaction: item)
+    //                ForEach(transactionResult) { item in
+    //                    ItemListCell(transaction: item)
+    //                }
+    //                .onDelete(perform: deleteTransaction)
                 }
-//                .onDelete(perform: deleteTransaction)
+                .navigationTitle("Records")
             }
-            .navigationTitle("Records")
         }
     }
     
@@ -43,8 +46,8 @@ struct TransactionListView: View {
     }
 }
 
-struct AddEntryView_Previews: PreviewProvider {
+struct TransactionListView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionListView()
+        RecordListView()
     }
 }

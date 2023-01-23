@@ -10,8 +10,6 @@ import SwiftUI
 struct AccountTransactionView: View {
     let account: AccountEntity
     
-    @State var lastDate = Date()
-    
     var body: some View {
         VStack {
             VStack {
@@ -24,104 +22,18 @@ struct AccountTransactionView: View {
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .padding(20)
+            .background(Color.accentColor.opacity(0.1))
+            .cornerRadius(20)
             
             List(account.transactionFromArray) { item in
-                VStack {
-                    if isSameDay(date: item.wrappedDate) == false {
-                        Text("\(UtilityHelper.shared.getDateOnly(date: item.wrappedDate))")
-                            .font(.title2)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    
-                    HStack {
-                        Image(systemName: getImageName(transaction: item))
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30)
-                            .padding(10)
-                            .background(getTransactionColor(transaction: item))
-                            .cornerRadius(10)
-                        
-                        VStack {
-                            Text(getTransactionTitle(transaction: item))
-                                .font(.title)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text(item.paymentType ?? "Unknown")
-                                .font(.title2)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text(item.note ?? "")
-                                .font(.title2)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        
-                        VStack {
-                            if item.type == AddType.transfer.rawValue {
-                                Text("\(UtilityHelper.shared.getBalanceString(balance: item.amount))")
-                                    .font(.title)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                            }
-                            else if item.type == AddType.expense.rawValue {
-                                Text("-\(UtilityHelper.shared.getBalanceString(balance: item.amount))")
-                                    .font(.title)
-                                    .foregroundColor(.red)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                            }
-                            else {
-                                Text("+\(UtilityHelper.shared.getBalanceString(balance: item.amount))")
-                                    .font(.title)
-                                    .foregroundColor(.green)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                            }
-                            
-                            Text("\(UtilityHelper.shared.getTimeOnly(date: item.wrappedDate))")
-                                .font(.title2)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
-                    }
-                }
+                ItemListCell(transaction: item)
             }
         }
-    }
-    
-    func getTransactionColor(transaction: TransactionEntity) -> Color {
-        if transaction.type == AddType.transfer.rawValue {
-            return ColorEMHelper.getColor(colorEntity: (transaction.toAccount?.color)!)
+        .onAppear {
+            UtilityHelper.shared.setDefaultDate()
         }
-        else {
-            return ColorEMHelper.getColor(colorEntity: (transaction.subCategory?.category?.color)!)
-        }
-    }
-    
-    func getTransactionTitle(transaction: TransactionEntity) -> String {
-        if transaction.type == AddType.transfer.rawValue {
-            return "Transfer"
-        }
-        else {
-            return transaction.subCategory?.wrappedName ?? "Unknown"
-        }
-    }
-    
-    func getImageName(transaction: TransactionEntity) -> String {
-        if transaction.type == AddType.transfer.rawValue {
-            return "arrow.left.arrow.right"
-        }
-        else {
-            return transaction.subCategory?.wrappedImageName ?? "arrow.counterclockwise"
-        }
-    }
-    
-    func isSameDay(date: Date) -> Bool {
-        let order = Calendar.current.compare(date, to: lastDate, toGranularity: .hour)
-        lastDate = date
-        
-        if order == .orderedSame {
-            return true
-        }
-        else {
-            return false
-        }
+        .navigationTitle("Records")
     }
 }
 

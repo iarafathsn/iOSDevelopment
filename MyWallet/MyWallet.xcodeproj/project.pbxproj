@@ -44,7 +44,7 @@
 		86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */; };
 		86E80207296167A40044ADF9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80206296167A40044ADF9 /* DashboardView.swift */; };
 		86E80209296167D70044ADF9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80208296167D70044ADF9 /* ChartView.swift */; };
-		86E8020B296167F50044ADF9 /* TransactionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020A296167F50044ADF9 /* TransactionListView.swift */; };
+		86E8020B296167F50044ADF9 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020A296167F50044ADF9 /* RecordListView.swift */; };
 		86E8020D296168070044ADF9 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020C296168070044ADF9 /* StatView.swift */; };
 		86E8020F296168150044ADF9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020E296168150044ADF9 /* SettingsView.swift */; };
 		86E802112961C2B40044ADF9 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E802102961C2B40044ADF9 /* SettingItem.swift */; };
@@ -91,7 +91,7 @@
 		86B218D32960312100EF1CFD /* MyWallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWallet.xcdatamodel; sourceTree = "<group>"; };
 		86E80206296167A40044ADF9 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		86E80208296167D70044ADF9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		86E8020A296167F50044ADF9 /* TransactionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListView.swift; sourceTree = "<group>"; };
+		86E8020A296167F50044ADF9 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
 		86E8020C296168070044ADF9 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		86E8020E296168150044ADF9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		86E802102961C2B40044ADF9 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 			children = (
 				863CD28529694E3000C5243C /* Preference */,
 				863CD28429694E1700C5243C /* Statistics */,
-				863CD28329694E0700C5243C /* Add */,
+				863CD28329694E0700C5243C /* Records */,
 				863CD28229694DEE00C5243C /* Chart */,
 			);
 			path = TabViews;
@@ -163,13 +163,12 @@
 			path = Chart;
 			sourceTree = "<group>";
 		};
-		863CD28329694E0700C5243C /* Add */ = {
+		863CD28329694E0700C5243C /* Records */ = {
 			isa = PBXGroup;
 			children = (
-				86E8020A296167F50044ADF9 /* TransactionListView.swift */,
-				861A8BAE2979955A007655A3 /* ItemListCell.swift */,
+				86E8020A296167F50044ADF9 /* RecordListView.swift */,
 			);
-			path = Add;
+			path = Records;
 			sourceTree = "<group>";
 		};
 		863CD28429694E1700C5243C /* Statistics */ = {
@@ -237,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				86812A7D297EC38600C08B36 /* AccountTransactionView.swift */,
+				861A8BAE2979955A007655A3 /* ItemListCell.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				867F52EB297422C70050E6FE /* EditAccountView.swift in Sources */,
 				86E8020D296168070044ADF9 /* StatView.swift in Sources */,
 				86B1DF18297D5F38007B51AD /* CategoryEntity+CoreDataClass.swift in Sources */,
-				86E8020B296167F50044ADF9 /* TransactionListView.swift in Sources */,
+				86E8020B296167F50044ADF9 /* RecordListView.swift in Sources */,
 				867F3A03296920220035E096 /* Currency.swift in Sources */,
 				868A856B2972751C0031F29B /* CategoryView.swift in Sources */,
 				86B1DF1A297D5F38007B51AD /* SubCategoryEntity+CoreDataClass.swift in Sources */,
