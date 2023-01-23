@@ -13,10 +13,6 @@ class UtilityHelper {
     private init() {
     }
     
-    func getColorFromDBColor(account: Account) -> Color {
-        return Color(red: account.colorRed, green: account.colorGreen, blue: account.colorBlue, opacity: account.colorAlpha)
-    }
-    
     func totalBalance(account: FetchedResults<AccountEntity>) -> String {
         var result: Double = 0.0
         
@@ -36,6 +32,20 @@ class UtilityHelper {
     func getDateTime(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    func getDateOnly(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd"
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    func getTimeOnly(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
         
         return dateFormatter.string(from: date)
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddEntryView: View {
+struct TransactionListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var transactionResult: FetchedResults<TransactionEntity>
     
@@ -45,6 +45,6 @@ struct AddEntryView: View {
 
 struct AddEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEntryView()
+        TransactionListView()
     }
 }

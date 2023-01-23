@@ -32,7 +32,7 @@ struct DashboardView: View {
                 Section {
                     List {
                         ForEach(account) { item in
-                            NavigationLink(destination: EditAccountView(account: item)) {
+                            NavigationLink(destination: AccountTransactionView(account: item)) {
                                 DAccountCell(account: item)
                             }
                         }
