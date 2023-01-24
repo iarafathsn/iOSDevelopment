@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CategoryView: View {
+struct CategoryList: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: []) var categoryEntity: FetchedResults<CategoryEntity>
     
@@ -23,7 +23,7 @@ struct CategoryView: View {
             else {
                 List(categoryEntity) { category in
                     HStack(spacing: 10) {
-                        NavigationLink(destination: SubCategoryListView(color: ColorEMHelper.getColor(colorEntity: category.color!), subCategory: category.subcategoryArray)) {
+                        NavigationLink(destination: SubCategoryList(color: ColorEMHelper.getColor(colorEntity: category.color!), subCategory: category.subcategoryArray)) {
                             
                             CellImageView(imageName: category.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: category.color!))
 
@@ -40,34 +40,8 @@ struct CategoryView: View {
     }
 }
 
-// MARK: Unused.
-struct SubCategoryView: View {
-    var catType: CategoryType
-    var color: Color
-    
-    let subCategory: [SubCategory] = Categories.subList
-    
-    var body: some View {
-        VStack {
-            List(subCategory) { item in
-                if item.parentType == catType {
-                    HStack(spacing: 10) {
-                        CellImageView(imageName: item.image, color: color)
-                        
-                        Text(item.name)
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(2)
-                    }
-                }
-            }
-        }
-        .navigationTitle("Sub-Categories")
-        .font(.system(size: 24, weight: .semibold, design: .rounded))
-    }
-}
-
-struct CategoryView_Previews: PreviewProvider {
+struct CategoryList_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView()
+        CategoryList()
     }
 }

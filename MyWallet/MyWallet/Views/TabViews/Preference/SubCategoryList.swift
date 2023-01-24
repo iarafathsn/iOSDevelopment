@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SubCategoryListView: View {
+struct SubCategoryList: View {
     var color: Color
     
     let subCategory: [SubCategoryEntity]

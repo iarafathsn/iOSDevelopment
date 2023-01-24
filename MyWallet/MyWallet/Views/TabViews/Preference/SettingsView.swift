@@ -39,7 +39,7 @@ struct SettingDetailView: View {
         case .Currency:
             CurrencyView()
         case .Categories:
-            CategoryView()
+            CategoryList()
         case .Account:
             AccountListView()
         default:
