@@ -19,13 +19,7 @@ struct ItemListCell: View {
             }
             
             HStack {
-                Image(systemName: UtilityHelper.shared.getImageName(transaction: transaction))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30)
-                    .padding(10)
-                    .background(UtilityHelper.shared.getTransactionColor(transaction: transaction))
-                    .cornerRadius(10)
+                CellImageView(imageName: UtilityHelper.shared.getImageName(transaction: transaction), color: UtilityHelper.shared.getTransactionColor(transaction: transaction))
                 
                 VStack {
                     Text(UtilityHelper.shared.getTransactionTitle(transaction: transaction))

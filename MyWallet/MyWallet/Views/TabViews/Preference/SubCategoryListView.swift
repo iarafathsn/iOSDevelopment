@@ -15,15 +15,7 @@ struct SubCategoryListView: View {
     var body: some View {
         List(subCategory) { item in
             HStack(spacing: 10) {
-                ZStack {
-                    Circle()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(color)
-                    Image(systemName: item.wrappedImageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20)
-                }
+                CellImageView(imageName: item.wrappedImageName, color: color)
                 
                 Text(item.wrappedName)
                     .minimumScaleFactor(0.5)

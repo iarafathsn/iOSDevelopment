@@ -23,6 +23,7 @@
 		867F52EB297422C70050E6FE /* EditAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F52EA297422C70050E6FE /* EditAccountView.swift */; };
 		86812A7E297EC38600C08B36 /* AccountTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86812A7D297EC38600C08B36 /* AccountTransactionView.swift */; };
 		868A856B2972751C0031F29B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868A856A2972751C0031F29B /* CategoryView.swift */; };
+		8691B2DF2980285200E8CF09 /* CellImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691B2DE2980285200E8CF09 /* CellImageView.swift */; };
 		86A1788929754F4900327FA6 /* AccountSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1788829754F4900327FA6 /* AccountSelectionView.swift */; };
 		86A1788B2975626F00327FA6 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1788A2975626F00327FA6 /* CategorySelectionView.swift */; };
 		86A1788D2975B8A300327FA6 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A1788C2975B8A300327FA6 /* TransactionModel.swift */; };
@@ -69,6 +70,7 @@
 		867F52EA297422C70050E6FE /* EditAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountView.swift; sourceTree = "<group>"; };
 		86812A7D297EC38600C08B36 /* AccountTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTransactionView.swift; sourceTree = "<group>"; };
 		868A856A2972751C0031F29B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		8691B2DE2980285200E8CF09 /* CellImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageView.swift; sourceTree = "<group>"; };
 		86A1788829754F4900327FA6 /* AccountSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionView.swift; sourceTree = "<group>"; };
 		86A1788A2975626F00327FA6 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		86A1788C2975B8A300327FA6 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		863CD27E29694D5800C5243C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8691B2DD2980283000E8CF09 /* HelperViews */,
 				86B218C92960311F00EF1CFD /* MainView.swift */,
 				863CD28129694DC300C5243C /* Dashboard */,
 				863CD27F29694D6C00C5243C /* TabViews */,
@@ -241,6 +244,14 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		8691B2DD2980283000E8CF09 /* HelperViews */ = {
+			isa = PBXGroup;
+			children = (
+				8691B2DE2980285200E8CF09 /* CellImageView.swift */,
+			);
+			path = HelperViews;
+			sourceTree = "<group>";
+		};
 		86B218BB2960311F00EF1CFD = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +367,7 @@
 				86E80207296167A40044ADF9 /* DashboardView.swift in Sources */,
 				861A8BB12979AE66007655A3 /* DAccountCell.swift in Sources */,
 				86A1788D2975B8A300327FA6 /* TransactionModel.swift in Sources */,
+				8691B2DF2980285200E8CF09 /* CellImageView.swift in Sources */,
 				86B1DF19297D5F38007B51AD /* CategoryEntity+CoreDataProperties.swift in Sources */,
 				86B1DF1F297D5F38007B51AD /* AccountEntity+CoreDataProperties.swift in Sources */,
 				86B218D12960312100EF1CFD /* DataController.swift in Sources */,

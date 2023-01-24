@@ -16,14 +16,7 @@ struct SettingsView: View {
                 List(settingItems) { item in
                     HStack(spacing: 10) {
                         NavigationLink(destination: SettingDetailView(type: item.type)) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 40, height: 40)
-                                    .foregroundColor(item.color)
-                                Image(systemName: item.imageName)
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                            }
+                            CellImageView(imageName: item.imageName, color: item.color)
                             
                             Text(item.name)
                                 .minimumScaleFactor(0.5)

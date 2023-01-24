@@ -15,13 +15,7 @@ struct DAccountCell: View {
     
     var body: some View {
         HStack {
-            Image(systemName: account.wrappedImageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 30)
-                .padding(10)
-                .background(color)
-                .cornerRadius(10)
+            CellImageView(imageName: account.wrappedImageName, color: color)
             
             VStack {
                 Text("\(account.wrappedName)")

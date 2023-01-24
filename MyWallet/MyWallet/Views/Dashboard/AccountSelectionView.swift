@@ -45,14 +45,7 @@ struct AccountSelectionView: View {
                             dismiss()
                         } label: {
                             HStack {
-                                ZStack {
-                                    Circle()
-                                        .frame(width: 40, height: 40)
-                                        .foregroundColor(ColorEMHelper.getColor(colorEntity: item.color!))
-                                    Image(systemName: item.wrappedImageName)
-                                        .resizable()
-                                        .frame(width: 20, height: 20)
-                                }
+                                CellImageView(imageName: item.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: item.color!))
                                 
                                 Text("\(item.wrappedName)")
                                     .font(.system(size: 24, weight: .bold))
@@ -113,14 +106,7 @@ struct ToAccountSelectionView: View {
                                 dismiss()
                             } label: {
                                 HStack {
-                                    ZStack {
-                                        Circle()
-                                            .frame(width: 40, height: 40)
-                                            .foregroundColor(ColorEMHelper.getColor(colorEntity: item.color!))
-                                        Image(systemName: item.wrappedImageName)
-                                            .resizable()
-                                            .frame(width: 20, height: 20)
-                                    }
+                                    CellImageView(imageName: item.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: item.color!))
                                     
                                     Text("\(item.wrappedName)")
                                         .font(.system(size: 24, weight: .bold))

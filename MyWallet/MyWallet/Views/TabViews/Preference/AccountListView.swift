@@ -24,14 +24,7 @@ struct AccountListView: View {
                 ForEach(account) { account in
                     NavigationLink(destination: EditAccountView(account: account)) {
                         HStack {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(ColorEMHelper.getColor(colorEntity: account.color!))
-                                Image(systemName: account.imageName!)
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                            }
+                            CellImageView(imageName: account.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: account.color!))
                             
                             Text(account.name!)
                                 .minimumScaleFactor(0.5)

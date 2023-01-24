@@ -24,15 +24,8 @@ struct CategoryView: View {
                 List(categoryEntity) { category in
                     HStack(spacing: 10) {
                         NavigationLink(destination: SubCategoryListView(color: ColorEMHelper.getColor(colorEntity: category.color!), subCategory: category.subcategoryArray)) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(ColorEMHelper.getColor(colorEntity: category.color!))
-                                Image(systemName: category.wrappedImgaeName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20)
-                            }
+                            
+                            CellImageView(imageName: category.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: category.color!))
 
                             Text(category.wrappedName)
                                 .minimumScaleFactor(0.5)
@@ -59,15 +52,7 @@ struct SubCategoryView: View {
             List(subCategory) { item in
                 if item.parentType == catType {
                     HStack(spacing: 10) {
-                        ZStack {
-                            Circle()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(color)
-                            Image(systemName: item.image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20)
-                        }
+                        CellImageView(imageName: item.image, color: color)
                         
                         Text(item.name)
                             .minimumScaleFactor(0.5)

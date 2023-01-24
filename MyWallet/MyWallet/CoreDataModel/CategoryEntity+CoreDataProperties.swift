@@ -26,7 +26,7 @@ extension CategoryEntity {
         name ?? "unknown"
     }
     
-    public var wrappedImgaeName: String {
+    public var wrappedImageName: String {
         imageName ?? "questionmark"
     }
     

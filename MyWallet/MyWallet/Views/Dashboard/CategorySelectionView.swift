@@ -31,15 +31,8 @@ struct CategorySelectionView: View {
                         NavigationLink(destination: SubCategorySelectionListView(color: ColorEMHelper.getColor(colorEntity: category.color!),
                                                                                  subCategory: category.subcategoryArray,
                                                                                  selectedSubCategory: $selectedSubCategory, isPresenting: $isPresenting)) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(ColorEMHelper.getColor(colorEntity: category.color!))
-                                Image(systemName: category.wrappedImgaeName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20)
-                            }
+                            
+                            CellImageView(imageName: category.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: category.color!))
 
                             Text(category.wrappedName)
                                 .minimumScaleFactor(0.5)
@@ -64,15 +57,7 @@ struct SubCategorySelectionListView: View {
     var body: some View {
         List(subCategory) { item in
             HStack(spacing: 10) {
-                ZStack {
-                    Circle()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(color)
-                    Image(systemName: item.wrappedImageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20)
-                }
+                CellImageView(imageName: item.wrappedImageName, color: color)
                 
                 Text(item.wrappedName)
                     .minimumScaleFactor(0.5)
