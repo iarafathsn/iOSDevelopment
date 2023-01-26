@@ -28,7 +28,7 @@ struct SubCategory: Identifiable {
 
 struct Categories {
     static let mainList = [
-        Category(type: .Food, name: "Food & Drinks", color: .pink, image: "fork.knife"),
+        Category(type: .Food, name: "Food & Drinks", color: .yellow, image: "fork.knife"),
         Category(type: .Vehicle, name: "Vehicle", color: .indigo, image: "car"),
         Category(type: .Shopping, name: "Shopping", color: .orange, image: "handbag"),
         Category(type: .Housing, name: "Housing", color: .blue, image: "house"),

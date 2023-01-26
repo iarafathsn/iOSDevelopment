@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AccountTransactionView: View {
+struct AccountRecordList: View {
     let account: AccountEntity
     
     var body: some View {

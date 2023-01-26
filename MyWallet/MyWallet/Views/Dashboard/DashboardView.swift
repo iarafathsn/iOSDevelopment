@@ -29,11 +29,9 @@ struct DashboardView: View {
                 }
                 
                 Section {
-                    List {
-                        ForEach(account) { item in
-                            NavigationLink(destination: AccountTransactionView(account: item)) {
-                                DAccountCell(account: item)
-                            }
+                    List(account) { item in
+                        NavigationLink(destination: AccountRecordList(account: item)) {
+                            DAccountCell(account: item)
                         }
                     }
                 }
