@@ -71,7 +71,7 @@ public struct PieChart: View {
                         .frame(width: pieWidth * geometry.size.width, height: pieWidth * geometry.size.width)
                         .gesture(
                             DragGesture(minimumDistance: 0)
-                                .onChanged { value in
+                                .onEnded { value in
                                     let radius = 0.5 * pieWidth * geometry.size.width
                                     let diff = CGPoint(x: value.location.x - radius, y: radius - value.location.y)
                                     let dist = pow(pow(diff.x, 2.0) + pow(diff.y, 2.0), 0.5)
