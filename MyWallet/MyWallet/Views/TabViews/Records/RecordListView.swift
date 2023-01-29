@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-struct RecordListView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var transactionResult: FetchedResults<TransactionEntity>
+struct RecordListView: View {    
+    @ObservedObject private var recordListVM: RecordListViewModel
     
     @State private var showingSheet = false
     
+    init(vm: RecordListViewModel) {
+        self.recordListVM = vm
+    }
+    
     var body: some View {
-        if transactionResult.count == 0 {
+        if recordListVM.transactions.count == 0 {
             ZStack {
                 Circle()
                     .frame(width: 400, height: 400)
@@ -26,12 +29,11 @@ struct RecordListView: View {
         }
         else {
             NavigationView {
-                List(transactionResult) { item in
-                    ItemListCell(transaction: item)
-    //                ForEach(transactionResult) { item in
-    //                    ItemListCell(transaction: item)
-    //                }
-    //                .onDelete(perform: deleteTransaction)
+                List {
+                    ForEach(recordListVM.transactions) { item in
+                        ItemListCell(recordModel: item)
+                    }
+                    .onDelete(perform: deleteTransaction)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -56,14 +58,16 @@ struct RecordListView: View {
     
     private func deleteTransaction(offsets: IndexSet) {
         withAnimation {
-            offsets.map { transactionResult[$0] }.forEach(managedObjectContext.delete)
-            DataController.shared.save(context: managedObjectContext)
+            offsets.forEach {index in
+                let transaction = recordListVM.transactions[index]
+                recordListVM.deleteRecord(recordId: transaction.id)
+            }
         }
     }
 }
 
 struct TransactionListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecordListView()
+        RecordListView(vm: RecordListViewModel(context: CoreDataModel.shared.container.viewContext))
     }
 }

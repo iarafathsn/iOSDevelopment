@@ -8,55 +8,54 @@
 import SwiftUI
 
 struct ItemListCell: View {
-    let transaction: TransactionEntity
+    let recordModel: RecordModel
     
     var body: some View {
         VStack {
-            if UtilityHelper.shared.isSameDay(date: transaction.wrappedDate) == false {
-                Text("\(UtilityHelper.shared.getDateOnly(date: transaction.wrappedDate))")
-                    .font(.title2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            
             HStack {
-                CellImageView(imageName: UtilityHelper.shared.getImageName(transaction: transaction), color: UtilityHelper.shared.getTransactionColor(transaction: transaction))
+                CellImageView(imageName: UtilityHelper.shared.getRecordImageName(recordModel: recordModel),
+                              color: UtilityHelper.shared.getRecordColor(recordModel: recordModel))
                 
                 VStack {
-                    Text(UtilityHelper.shared.getTransactionTitle(transaction: transaction))
+                    Text(UtilityHelper.shared.getRecordTitle(recordModel: recordModel))
                         .font(.system(size: 18, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text(transaction.fromAccount?.wrappedName ?? "Unknown")
+                    Text(recordModel.account.wrappedName)
                         .font(.system(size: 16))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    if transaction.note != nil {
-                        Text(transaction.note ?? "")
+                    if recordModel.note != nil {
+                        Text(recordModel.note ?? "")
                             .font(.system(size: 14))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 
                 VStack {
-                    if transaction.type == AddType.transfer.rawValue {
-                        Text("\(UtilityHelper.shared.getBalanceString(balance: transaction.amount))")
+                    if recordModel.type == AddType.transfer.rawValue {
+                        Text("\(UtilityHelper.shared.getBalanceString(balance: recordModel.amount))")
                             .font(.system(size: 18, weight: .bold))
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    else if transaction.type == AddType.expense.rawValue {
-                        Text("-\(UtilityHelper.shared.getBalanceString(balance: transaction.amount))")
+                    else if recordModel.type == AddType.expense.rawValue {
+                        Text("-\(UtilityHelper.shared.getBalanceString(balance: recordModel.amount))")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.red)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     else {
-                        Text("+\(UtilityHelper.shared.getBalanceString(balance: transaction.amount))")
+                        Text("+\(UtilityHelper.shared.getBalanceString(balance: recordModel.amount))")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.green)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
-                    Text("\(UtilityHelper.shared.getTimeOnly(date: transaction.wrappedDate))")
+                    Text("\(UtilityHelper.shared.getDateOnly(date: recordModel.date))")
+                        .font(.system(size: 16))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    Text("\(UtilityHelper.shared.getTimeOnly(date: recordModel.date))")
                         .font(.system(size: 16))
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }

@@ -15,6 +15,13 @@ extension TransactionEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<TransactionEntity> {
         return NSFetchRequest<TransactionEntity>(entityName: "TransactionEntity")
     }
+    
+    static var all: NSFetchRequest<TransactionEntity> {
+        let request = TransactionEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \TransactionEntity.date, ascending: false)]
+        
+        return request
+    }
 
     @NSManaged public var amount: Double
     @NSManaged public var id: UUID?

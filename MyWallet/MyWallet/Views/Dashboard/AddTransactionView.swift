@@ -196,7 +196,7 @@ struct AddTransactionView: View {
                             if selectedAccount != nil || selectedToAccount != nil {
                                 let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, subcategory: nil, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: selectedToAccount)
                                 
-                                DataController.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
+                                CoreDataModel.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
                             }
                         }
                         else {
@@ -205,7 +205,7 @@ struct AddTransactionView: View {
                             if selectedAccount != nil || selectedSubCategory != nil {
                                 let transactionModel = TransactionModel(account: selectedAccount!, amount: selectedAmount, type: selectedType.rawValue, subcategory: selectedSubCategory, date: selectedDate, note: enteredNote, payee: enteredPayee, paymentType: paymentType.rawValue, toAccount: nil)
                                 
-                                DataController.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
+                                CoreDataModel.shared.addTransaction(transactionModel: transactionModel, context: managedObjectContext)
                             }
                         }
                         

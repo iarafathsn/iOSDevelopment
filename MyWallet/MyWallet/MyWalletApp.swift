@@ -11,7 +11,7 @@ import SwiftUI
 struct MyWalletApp: App {
     @Environment(\.scenePhase) var scenePhase
     
-    let dataController = DataController.shared
+    let dataController = CoreDataModel.shared
 
     var body: some Scene {
         WindowGroup {

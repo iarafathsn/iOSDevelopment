@@ -72,7 +72,7 @@ struct AccountListView: View {
     private func deleteAccount(offsets: IndexSet) {
         withAnimation {
             offsets.map { account[$0] }.forEach(managedObjectContext.delete)
-            DataController.shared.save(context: managedObjectContext)
+            CoreDataModel.shared.save(context: managedObjectContext)
         }
     }
 }

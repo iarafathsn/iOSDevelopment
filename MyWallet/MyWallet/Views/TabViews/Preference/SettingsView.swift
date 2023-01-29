@@ -42,9 +42,28 @@ struct SettingDetailView: View {
             CategoryList()
         case .Account:
             AccountListView()
+        case .About :
+            AboutView()
         default:
             Text("Default view")
         }
+    }
+}
+
+struct AboutView: View {
+    var body: some View {
+        VStack {
+            Text("\(UtilityHelper.shared.getAppDisplayName()) is an app to make life easier.")
+            Text("Current Version: \(UtilityHelper.shared.getAppVersion())")
+            Spacer()
+            Text("Developed by Md. Arafat Hossain")
+                .font(.headline)
+                .foregroundColor(.green)
+            Spacer()
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .center)
+        .navigationTitle("About")
     }
 }
 

@@ -8,8 +8,8 @@
 import CoreData
 import SwiftUI
 
-struct DataController {
-    static let shared = DataController()
+struct CoreDataModel {
+    static let shared = CoreDataModel()
 
     let container: NSPersistentContainer
 

@@ -13,7 +13,7 @@ struct MainView: View {
     
     var body: some View {
         TabView {
-            DashboardView()
+            DashboardView(vm: DashboardViewModel(context: manageObjectContext))
                 .tabItem {
                     Image(systemName: "house")
                     Text("Dashboard")
@@ -23,7 +23,7 @@ struct MainView: View {
                     Image(systemName: "chart.pie")
                     Text("Chart")
                 }
-            RecordListView()
+            RecordListView(vm: RecordListViewModel(context: manageObjectContext))
                 .tabItem {
                     Image(systemName: "list.bullet")
                     Text("Records")
@@ -45,6 +45,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environment(\.managedObjectContext, DataController.shared.container.viewContext)
+        MainView().environment(\.managedObjectContext, CoreDataModel.shared.container.viewContext)
     }
 }

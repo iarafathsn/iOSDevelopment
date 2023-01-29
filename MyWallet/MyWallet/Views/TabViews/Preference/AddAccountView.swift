@@ -85,7 +85,7 @@ struct AddAccountView: View {
                             
                             let accountModel = AccountModel(name: accountName, balance: accountBalance, type: accountType.name, imageName: accountType.imageName, color: accountColor)
                             
-                            DataController.shared.addAccount(accountModel: accountModel, context: managedObjectContext)
+                            CoreDataModel.shared.addAccount(accountModel: accountModel, context: managedObjectContext)
                             
                             dismiss()
                         }

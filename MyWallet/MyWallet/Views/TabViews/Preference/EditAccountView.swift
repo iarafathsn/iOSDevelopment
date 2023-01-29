@@ -97,7 +97,7 @@ struct EditAccountView: View {
                         
                         let accountModel = AccountModel(name: name, balance: balance, type: type.name, imageName: type.imageName, color: color)
                         
-                        DataController.shared.editAccount(account: account, accountModel: accountModel, context: managedObjectContext)
+                        CoreDataModel.shared.editAccount(account: account, accountModel: accountModel, context: managedObjectContext)
                         
                         dismiss()
                     }

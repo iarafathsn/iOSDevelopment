@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
     @State private var currency = UserDefaultHelper.shared.getCurrency().code
+    
+    private var dashboardVM: DashboardViewModel
+    
+    init(vm: DashboardViewModel) {
+        self.dashboardVM = vm
+    }
     
     var body: some View {
         NavigationView {
@@ -47,6 +52,7 @@ struct DashboardView: View {
 
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardView()
+        let viewContext = CoreDataModel.shared.container.viewContext
+        DashboardView(vm: DashboardViewModel(context: viewContext))
     }
 }

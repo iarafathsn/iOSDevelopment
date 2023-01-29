@@ -46,8 +46,11 @@
 		86B218CA2960311F00EF1CFD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218C92960311F00EF1CFD /* MainView.swift */; };
 		86B218CC2960312100EF1CFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CB2960312100EF1CFD /* Assets.xcassets */; };
 		86B218CF2960312100EF1CFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B218CE2960312100EF1CFD /* Preview Assets.xcassets */; };
-		86B218D12960312100EF1CFD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D02960312100EF1CFD /* DataController.swift */; };
+		86B218D12960312100EF1CFD /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D02960312100EF1CFD /* CoreDataModel.swift */; };
 		86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */; };
+		86D097B5298683CB00758006 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B4298683CB00758006 /* DashboardViewModel.swift */; };
+		86D097B7298693F400758006 /* RecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B6298693F400758006 /* RecordListViewModel.swift */; };
+		86D097B92986C2E200758006 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B82986C2E200758006 /* RecordModel.swift */; };
 		86E80207296167A40044ADF9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80206296167A40044ADF9 /* DashboardView.swift */; };
 		86E80209296167D70044ADF9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80208296167D70044ADF9 /* ChartView.swift */; };
 		86E8020B296167F50044ADF9 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020A296167F50044ADF9 /* RecordListView.swift */; };
@@ -99,8 +102,11 @@
 		86B218C92960311F00EF1CFD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86B218CB2960312100EF1CFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86B218CE2960312100EF1CFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		86B218D02960312100EF1CFD /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		86B218D02960312100EF1CFD /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		86B218D32960312100EF1CFD /* MyWallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWallet.xcdatamodel; sourceTree = "<group>"; };
+		86D097B4298683CB00758006 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		86D097B6298693F400758006 /* RecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewModel.swift; sourceTree = "<group>"; };
+		86D097B82986C2E200758006 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		86E80206296167A40044ADF9 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		86E80208296167D70044ADF9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		86E8020A296167F50044ADF9 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
@@ -212,6 +218,8 @@
 			children = (
 				863CD28C2969775B00C5243C /* AddCurrencyVM.swift */,
 				867F52DB2972BA5E0050E6FE /* AddAccountVM.swift */,
+				86D097B4298683CB00758006 /* DashboardViewModel.swift */,
+				86D097B6298693F400758006 /* RecordListViewModel.swift */,
 			);
 			path = VMs;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 				867F3A02296920220035E096 /* Currency.swift */,
 				86A1788C2975B8A300327FA6 /* TransactionModel.swift */,
 				86B1DEF2297D0E7E007B51AD /* ColorEM.swift */,
+				86D097B82986C2E200758006 /* RecordModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -232,15 +241,7 @@
 		867F52E3297333320050E6FE /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				86B1DF10297D5F38007B51AD /* CategoryEntity+CoreDataClass.swift */,
-				86B1DF11297D5F38007B51AD /* CategoryEntity+CoreDataProperties.swift */,
-				86B1DF12297D5F38007B51AD /* SubCategoryEntity+CoreDataClass.swift */,
-				86B1DF13297D5F38007B51AD /* SubCategoryEntity+CoreDataProperties.swift */,
-				86B1DF14297D5F38007B51AD /* TransactionEntity+CoreDataClass.swift */,
-				86B1DF15297D5F38007B51AD /* TransactionEntity+CoreDataProperties.swift */,
-				86B1DF16297D5F38007B51AD /* AccountEntity+CoreDataClass.swift */,
-				86B1DF17297D5F38007B51AD /* AccountEntity+CoreDataProperties.swift */,
-				86B218D02960312100EF1CFD /* DataController.swift */,
+				86B218D02960312100EF1CFD /* CoreDataModel.swift */,
 				86B218D22960312100EF1CFD /* MyWallet.xcdatamodeld */,
 			);
 			path = CoreDataModel;
@@ -299,6 +300,7 @@
 				863CD27D29694CE000C5243C /* Helper */,
 				863CD28B296973BF00C5243C /* Models */,
 				863CD28A296973AA00C5243C /* VMs */,
+				86D097B129867DBF00758006 /* Extensions */,
 				867F52E3297333320050E6FE /* CoreDataModel */,
 				86B218CB2960312100EF1CFD /* Assets.xcassets */,
 				86B218CD2960312100EF1CFD /* Preview Content */,
@@ -312,6 +314,21 @@
 				86B218CE2960312100EF1CFD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		86D097B129867DBF00758006 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				86B1DF10297D5F38007B51AD /* CategoryEntity+CoreDataClass.swift */,
+				86B1DF11297D5F38007B51AD /* CategoryEntity+CoreDataProperties.swift */,
+				86B1DF12297D5F38007B51AD /* SubCategoryEntity+CoreDataClass.swift */,
+				86B1DF13297D5F38007B51AD /* SubCategoryEntity+CoreDataProperties.swift */,
+				86B1DF14297D5F38007B51AD /* TransactionEntity+CoreDataClass.swift */,
+				86B1DF15297D5F38007B51AD /* TransactionEntity+CoreDataProperties.swift */,
+				86B1DF16297D5F38007B51AD /* AccountEntity+CoreDataClass.swift */,
+				86B1DF17297D5F38007B51AD /* AccountEntity+CoreDataProperties.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,10 +407,11 @@
 				86E80207296167A40044ADF9 /* DashboardView.swift in Sources */,
 				861A8BB12979AE66007655A3 /* DAccountCell.swift in Sources */,
 				86A1788D2975B8A300327FA6 /* TransactionModel.swift in Sources */,
+				86D097B5298683CB00758006 /* DashboardViewModel.swift in Sources */,
 				8691B2DF2980285200E8CF09 /* CellImageView.swift in Sources */,
 				86B1DF19297D5F38007B51AD /* CategoryEntity+CoreDataProperties.swift in Sources */,
 				86B1DF1F297D5F38007B51AD /* AccountEntity+CoreDataProperties.swift in Sources */,
-				86B218D12960312100EF1CFD /* DataController.swift in Sources */,
+				86B218D12960312100EF1CFD /* CoreDataModel.swift in Sources */,
 				860B83D2298170F200D6F88B /* ChartHelper.swift in Sources */,
 				86B1DF1B297D5F38007B51AD /* SubCategoryEntity+CoreDataProperties.swift in Sources */,
 				86B1DEFB297D548E007B51AD /* SubCategoryList.swift in Sources */,
@@ -411,6 +429,7 @@
 				86B1DF1A297D5F38007B51AD /* SubCategoryEntity+CoreDataClass.swift in Sources */,
 				867F3A01296911D20035E096 /* AddAccountView.swift in Sources */,
 				86812A7E297EC38600C08B36 /* AccountRecordList.swift in Sources */,
+				86D097B92986C2E200758006 /* RecordModel.swift in Sources */,
 				86E8020F296168150044ADF9 /* SettingsView.swift in Sources */,
 				860B83CE29816A5F00D6F88B /* PieSlice.swift in Sources */,
 				86E80209296167D70044ADF9 /* ChartView.swift in Sources */,
@@ -427,6 +446,7 @@
 				86A1788929754F4900327FA6 /* AccountSelectionView.swift in Sources */,
 				863CD28D2969775B00C5243C /* AddCurrencyVM.swift in Sources */,
 				867F52DA2972B72B0050E6FE /* AccountModel.swift in Sources */,
+				86D097B7298693F400758006 /* RecordListViewModel.swift in Sources */,
 				86F1BFC5297D755300C528DC /* CoreDataObserver.swift in Sources */,
 				867F39FF2969113A0035E096 /* AccountListView.swift in Sources */,
 				867F52E9297407860050E6FE /* UtilityHelper.swift in Sources */,

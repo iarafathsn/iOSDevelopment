@@ -27,7 +27,7 @@ struct AccountRecordList: View {
             .cornerRadius(20)
             
             List(account.transactionFromArray) { item in
-                ItemListCell(transaction: item)
+                ItemListCell(recordModel: RecordModel(transaction: item))
             }
         }
         .onAppear {

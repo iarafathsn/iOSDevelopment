@@ -68,7 +68,7 @@ class UtilityHelper {
     func initilizeCategory() {
         let categories = Categories.mainList
         let subcategories = Categories.subList
-
+        
         for category in categories {
             let subList = subcategories.filter{ $0.parentType == category.type }
             var subDict = [String: String]()
@@ -77,7 +77,7 @@ class UtilityHelper {
                 subDict[sub.name] = sub.image
             }
             
-            DataController.shared.addInitCategory(name: category.name, imageName: category.image, color: category.color, subCatDict: subDict)
+            CoreDataModel.shared.addInitCategory(name: category.name, imageName: category.image, color: category.color, subCatDict: subDict)
         }
     }
     
@@ -91,12 +91,39 @@ class UtilityHelper {
         }
     }
     
+    func getRecordColor(recordModel: RecordModel) -> Color {
+        if recordModel.type == AddType.transfer.rawValue {
+            return ColorEMHelper.getColor(colorEntity: (recordModel.toAccount?.color)!)
+        }
+        else {
+            return ColorEMHelper.getColor(colorEntity: (recordModel.subCategory?.category?.color)!)
+        }
+    }
+    
     func getTransactionTitle(transaction: TransactionEntity) -> String {
         if transaction.type == AddType.transfer.rawValue {
             return "Withdraw"
         }
         else {
             return transaction.subCategory?.wrappedName ?? "Unknown"
+        }
+    }
+    
+    func getRecordTitle(recordModel: RecordModel) -> String {
+        if recordModel.type == AddType.transfer.rawValue {
+            return "Withdraw"
+        }
+        else {
+            return recordModel.subCategory?.wrappedName ?? "Unknown"
+        }
+    }
+    
+    func getRecordImageName(recordModel: RecordModel) -> String {
+        if recordModel.type == AddType.transfer.rawValue {
+            return "arrow.left.arrow.right"
+        }
+        else {
+            return recordModel.subCategory?.wrappedImageName ?? "arrow.counterclockwise"
         }
     }
     
@@ -111,6 +138,26 @@ class UtilityHelper {
     
     func setDefaultDate() {
         previousDate = Calendar.current.date(byAdding: .year, value: -50, to: Date()) ?? Date()
+    }
+    
+    func getAppDisplayName() -> String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
+    }
+    
+    func getAppIcon() -> String {
+        var appIconName: String! {
+            guard let iconsDictionary = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String:Any],
+                  let primaryIconsDictionary = iconsDictionary["CFBundlePrimaryIcon"] as? [String:Any],
+                  let iconFiles = primaryIconsDictionary["CFBundleIconFiles"] as? [String],
+                  let lastIcon = iconFiles.last else { return nil }
+            return lastIcon
+        }
+        
+        return appIconName
+    }
+    
+    func getAppVersion() -> String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
 }
 
