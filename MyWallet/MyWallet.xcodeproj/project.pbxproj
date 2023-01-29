@@ -51,6 +51,7 @@
 		86D097B5298683CB00758006 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B4298683CB00758006 /* DashboardViewModel.swift */; };
 		86D097B7298693F400758006 /* RecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B6298693F400758006 /* RecordListViewModel.swift */; };
 		86D097B92986C2E200758006 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B82986C2E200758006 /* RecordModel.swift */; };
+		86D097BB2986C51D00758006 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097BA2986C51D00758006 /* ChartViewModel.swift */; };
 		86E80207296167A40044ADF9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80206296167A40044ADF9 /* DashboardView.swift */; };
 		86E80209296167D70044ADF9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80208296167D70044ADF9 /* ChartView.swift */; };
 		86E8020B296167F50044ADF9 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020A296167F50044ADF9 /* RecordListView.swift */; };
@@ -58,7 +59,6 @@
 		86E8020F296168150044ADF9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020E296168150044ADF9 /* SettingsView.swift */; };
 		86E802112961C2B40044ADF9 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E802102961C2B40044ADF9 /* SettingItem.swift */; };
 		86E80215296885020044ADF9 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80214296885020044ADF9 /* AddTransactionView.swift */; };
-		86F1BFC5297D755300C528DC /* CoreDataObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F1BFC4297D755300C528DC /* CoreDataObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +107,7 @@
 		86D097B4298683CB00758006 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		86D097B6298693F400758006 /* RecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewModel.swift; sourceTree = "<group>"; };
 		86D097B82986C2E200758006 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
+		86D097BA2986C51D00758006 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		86E80206296167A40044ADF9 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		86E80208296167D70044ADF9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		86E8020A296167F50044ADF9 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		86E8020E296168150044ADF9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		86E802102961C2B40044ADF9 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		86E80214296885020044ADF9 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
-		86F1BFC4297D755300C528DC /* CoreDataObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,6 @@
 				867F52DF2972BC420050E6FE /* UserDefaultHelper.swift */,
 				867F52E12972C2000050E6FE /* Logger.swift */,
 				867F52E8297407860050E6FE /* UtilityHelper.swift */,
-				86F1BFC4297D755300C528DC /* CoreDataObserver.swift */,
 				860B83D1298170F200D6F88B /* ChartHelper.swift */,
 			);
 			path = Helper;
@@ -220,6 +219,7 @@
 				867F52DB2972BA5E0050E6FE /* AddAccountVM.swift */,
 				86D097B4298683CB00758006 /* DashboardViewModel.swift */,
 				86D097B6298693F400758006 /* RecordListViewModel.swift */,
+				86D097BA2986C51D00758006 /* ChartViewModel.swift */,
 			);
 			path = VMs;
 			sourceTree = "<group>";
@@ -401,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D097BB2986C51D00758006 /* ChartViewModel.swift in Sources */,
 				86B218D42960312100EF1CFD /* MyWallet.xcdatamodeld in Sources */,
 				86B1DF1E297D5F38007B51AD /* AccountEntity+CoreDataClass.swift in Sources */,
 				867F52E22972C2000050E6FE /* Logger.swift in Sources */,
@@ -447,7 +448,6 @@
 				863CD28D2969775B00C5243C /* AddCurrencyVM.swift in Sources */,
 				867F52DA2972B72B0050E6FE /* AccountModel.swift in Sources */,
 				86D097B7298693F400758006 /* RecordListViewModel.swift in Sources */,
-				86F1BFC5297D755300C528DC /* CoreDataObserver.swift in Sources */,
 				867F39FF2969113A0035E096 /* AccountListView.swift in Sources */,
 				867F52E9297407860050E6FE /* UtilityHelper.swift in Sources */,
 				86B1DF1C297D5F38007B51AD /* TransactionEntity+CoreDataClass.swift in Sources */,

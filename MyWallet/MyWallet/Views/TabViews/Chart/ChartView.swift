@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ChartView: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var transactionResult: FetchedResults<TransactionEntity>
-    
-    private let chartHelper = ChartHelper()
-    
+    @ObservedObject private var chartVM: ChartViewModel
     @State private var currency = UserDefaultHelper.shared.getCurrency().code
     
+    init(vm: ChartViewModel) {
+        chartVM = vm
+    }
+    
     var body: some View {
-        if transactionResult.count == 0 {
+        if chartVM.pieItems.count == 0 {
             ZStack {
                 Circle()
                     .frame(width: 400, height: 400)
@@ -27,9 +28,7 @@ struct ChartView: View {
         }
         else {
             VStack(spacing: 10) {
-                if chartHelper.isExpenseRecords(transactions: transactionResult) {
-                    PieChart(title: "Expenses", pieItems: chartHelper.pieItems, formatter: {value in String(format: "\(currency) %.2f", value)})
-                }
+                PieChart(title: "Expenses", pieItems: chartVM.pieItems, formatter: {value in String(format: "\(currency) %.2f", value)})
             }
             .onAppear {
                 currency = UserDefaultHelper.shared.getCurrency().code
@@ -41,6 +40,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView()
+        ChartView(vm: ChartViewModel(context: CoreDataModel.shared.container.viewContext))
     }
 }

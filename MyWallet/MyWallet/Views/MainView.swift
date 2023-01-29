@@ -18,7 +18,7 @@ struct MainView: View {
                     Image(systemName: "house")
                     Text("Dashboard")
                 }
-            ChartView()
+            ChartView(vm: ChartViewModel(context: manageObjectContext))
                 .tabItem {
                     Image(systemName: "chart.pie")
                     Text("Chart")
