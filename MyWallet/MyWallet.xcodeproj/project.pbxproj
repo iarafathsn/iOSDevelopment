@@ -144,7 +144,6 @@
 			children = (
 				86B218C92960311F00EF1CFD /* MainView.swift */,
 				8691B2DD2980283000E8CF09 /* HelperViews */,
-				863CD28129694DC300C5243C /* Dashboard */,
 				863CD27F29694D6C00C5243C /* TabViews */,
 				86812A7F297EC3A500C08B36 /* Account */,
 			);
@@ -154,6 +153,7 @@
 		863CD27F29694D6C00C5243C /* TabViews */ = {
 			isa = PBXGroup;
 			children = (
+				863CD28129694DC300C5243C /* Dashboard */,
 				863CD28529694E3000C5243C /* Preference */,
 				863CD28429694E1700C5243C /* Statistics */,
 				863CD28329694E0700C5243C /* Records */,
