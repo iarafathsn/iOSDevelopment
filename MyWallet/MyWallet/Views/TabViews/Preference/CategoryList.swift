@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct CategoryList: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(sortDescriptors: []) var categoryEntity: FetchedResults<CategoryEntity>
+    @ObservedObject private var categoryVM: CategoryListViewModel
+    
+    init(vm: CategoryListViewModel) {
+        self.categoryVM = vm
+    }
     
     var body: some View {
         VStack {
-            if categoryEntity.count == 0 {
+            if categoryVM.categoryList.count == 0 {
                 Button("Refresh Category") {
                     UtilityHelper.shared.initilizeCategory()
                 }
@@ -21,17 +24,19 @@ struct CategoryList: View {
                 Spacer()
             }
             else {
-                List(categoryEntity) { category in
-                    HStack(spacing: 10) {
-                        NavigationLink(destination: SubCategoryList(color: ColorEMHelper.getColor(colorEntity: category.color!), subCategory: category.subcategoryArray)) {
-                            
-                            CellImageView(imageName: category.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: category.color!))
+                List {
+                    ForEach(categoryVM.categoryList) { category in
+                        HStack(spacing: 10) {
+                            NavigationLink(destination: SubCategoryList(color: category.color, subCategory: category.subCategory)) {
+                                CellImageView(imageName: category.imageName, color: category.color)
 
-                            Text(category.wrappedName)
-                                .minimumScaleFactor(0.5)
-                                .lineLimit(1)
+                                Text(category.name)
+                                    .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                            }
                         }
                     }
+//                    .onDelete(perform: deleteTransaction)
                 }
             }
         }
@@ -42,6 +47,6 @@ struct CategoryList: View {
 
 struct CategoryList_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryList()
+        CategoryList(vm: CategoryListViewModel(context: CoreDataModel.shared.container.viewContext))
     }
 }

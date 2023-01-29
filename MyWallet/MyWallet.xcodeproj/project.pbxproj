@@ -52,6 +52,7 @@
 		86D097B7298693F400758006 /* RecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B6298693F400758006 /* RecordListViewModel.swift */; };
 		86D097B92986C2E200758006 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097B82986C2E200758006 /* RecordModel.swift */; };
 		86D097BB2986C51D00758006 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097BA2986C51D00758006 /* ChartViewModel.swift */; };
+		86D097BD2986D10A00758006 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D097BC2986D10A00758006 /* CategoryListViewModel.swift */; };
 		86E80207296167A40044ADF9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80206296167A40044ADF9 /* DashboardView.swift */; };
 		86E80209296167D70044ADF9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E80208296167D70044ADF9 /* ChartView.swift */; };
 		86E8020B296167F50044ADF9 /* RecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8020A296167F50044ADF9 /* RecordListView.swift */; };
@@ -108,6 +109,7 @@
 		86D097B6298693F400758006 /* RecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewModel.swift; sourceTree = "<group>"; };
 		86D097B82986C2E200758006 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		86D097BA2986C51D00758006 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		86D097BC2986D10A00758006 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		86E80206296167A40044ADF9 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		86E80208296167D70044ADF9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		86E8020A296167F50044ADF9 /* RecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListView.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				86D097B4298683CB00758006 /* DashboardViewModel.swift */,
 				86D097B6298693F400758006 /* RecordListViewModel.swift */,
 				86D097BA2986C51D00758006 /* ChartViewModel.swift */,
+				86D097BC2986D10A00758006 /* CategoryListViewModel.swift */,
 			);
 			path = VMs;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				86D097B92986C2E200758006 /* RecordModel.swift in Sources */,
 				86E8020F296168150044ADF9 /* SettingsView.swift in Sources */,
 				860B83CE29816A5F00D6F88B /* PieSlice.swift in Sources */,
+				86D097BD2986D10A00758006 /* CategoryListViewModel.swift in Sources */,
 				86E80209296167D70044ADF9 /* ChartView.swift in Sources */,
 				863CD28F2969C56600C5243C /* Category.swift in Sources */,
 				86B218CA2960311F00EF1CFD /* MainView.swift in Sources */,

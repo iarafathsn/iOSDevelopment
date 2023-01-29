@@ -15,6 +15,13 @@ extension CategoryEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CategoryEntity> {
         return NSFetchRequest<CategoryEntity>(entityName: "CategoryEntity")
     }
+    
+    static var all: NSFetchRequest<CategoryEntity> {
+        let request = CategoryEntity.fetchRequest()
+        request.sortDescriptors = []
+        
+        return request
+    }
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?

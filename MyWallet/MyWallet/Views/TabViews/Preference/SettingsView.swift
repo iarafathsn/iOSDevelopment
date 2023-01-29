@@ -39,7 +39,7 @@ struct SettingDetailView: View {
         case .Currency:
             CurrencyView()
         case .Categories:
-            CategoryList()
+            CategoryList(vm: CategoryListViewModel(context: CoreDataModel.shared.container.viewContext))
         case .Account:
             AccountListView()
         case .About :

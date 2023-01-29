@@ -10,16 +10,18 @@ import SwiftUI
 struct SubCategoryList: View {
     var color: Color
     
-    let subCategory: [SubCategoryEntity]
+    let subCategory: [SubCategoryModel]
     
     var body: some View {
-        List(subCategory) { item in
-            HStack(spacing: 10) {
-                CellImageView(imageName: item.wrappedImageName, color: color)
-                
-                Text(item.wrappedName)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(2)
+        List {
+            ForEach(subCategory) { item in
+                HStack(spacing: 10) {
+                    CellImageView(imageName: item.imageName, color: color)
+                    
+                    Text(item.name)
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(2)
+                }
             }
         }
         .navigationTitle("Sub-Categories")
