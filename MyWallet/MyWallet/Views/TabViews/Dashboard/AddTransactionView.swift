@@ -11,6 +11,8 @@ struct AddTransactionView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var currencySetting: CurrencySetting
+    
     @State private var selectedType = AddType.expense
     @State private var selectedAmount = 0.0
     @State private var selectedDate = Date()
@@ -38,7 +40,7 @@ struct AddTransactionView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     
                     HStack {
-                        Text("\(UserDefaultHelper.shared.getCurrency().code)")
+                        Text("\(currencySetting.currency.code)")
                             .cornerRadius(10)
                             .font(.system(size: 30, weight: .semibold))
                         

@@ -11,11 +11,13 @@ struct AccountListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
+    @EnvironmentObject var currencySetting: CurrencySetting
+    
     @State private var showingSheet = false
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Total Balance: \(self.totalBalance()) \(UserDefaultHelper.shared.getCurrency().code)")
+            Text("Total Balance: \(self.totalBalance()) \(currencySetting.currency.code)")
                 .foregroundColor(.gray)
                 .padding(.horizontal)
                 .font(.system(size: 18, weight: .regular, design: .serif))
@@ -64,9 +66,7 @@ struct AccountListView: View {
             result += item.balance
         }
         
-        let resultString = "\(Double(round(100 * result) / 100))"
-        
-        return resultString
+        return String(format: "%.2f", result)
     }
     
     private func deleteAccount(offsets: IndexSet) {

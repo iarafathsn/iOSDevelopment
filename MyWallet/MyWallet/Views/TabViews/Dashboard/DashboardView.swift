@@ -10,7 +10,7 @@ import SwiftUI
 struct DashboardView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
-    @State private var currency = UserDefaultHelper.shared.getCurrency().code
+    @EnvironmentObject var currencySetting: CurrencySetting
     
     private var dashboardVM: DashboardViewModel
     
@@ -27,7 +27,7 @@ struct DashboardView: View {
                             .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text("\(currency) \(UtilityHelper.shared.totalBalance(account: account))")
+                        Text("\(currencySetting.currency.code) \(UtilityHelper.shared.totalBalance(account: account))")
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -43,7 +43,6 @@ struct DashboardView: View {
             }
             .onAppear {
                 Logger.i("Appearing Dashboard view")
-                currency = UserDefaultHelper.shared.getCurrency().code
                 UtilityHelper.shared.setDefaultDate()
             }
         }

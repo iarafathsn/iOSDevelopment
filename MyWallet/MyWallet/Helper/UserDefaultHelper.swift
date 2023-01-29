@@ -15,11 +15,14 @@ class UserDefaultHelper {
     
     private var currency: Currency = CurrencyList.items[0]
     
+    var currencySetting = CurrencySetting()
+    
     private init() {
         if let currentCurrency = mUserDefault.string(forKey: UserDefaultHelper.CURRENCY_KEY) {
             if let index = CurrencyList.items.firstIndex(where: { $0.code == currentCurrency}) {
                 Logger.i("Index found at \(index)")
                 currency = CurrencyList.items[index]
+                currencySetting.currency = currency
             }
         }
         else {
@@ -35,6 +38,8 @@ class UserDefaultHelper {
         mUserDefault.setValue(currency.code, forKey: UserDefaultHelper.CURRENCY_KEY)
         
         self.currency = currency
+        
+        currencySetting.currency = currency
         
         Logger.i("Saving data \(currency.code) which symbol \(currency.symbol)")
     }

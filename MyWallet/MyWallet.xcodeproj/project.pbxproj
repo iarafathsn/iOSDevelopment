@@ -17,6 +17,7 @@
 		863CD27B296936D400C5243C /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD27A296936D400C5243C /* CurrencyView.swift */; };
 		863CD28D2969775B00C5243C /* AddCurrencyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD28C2969775B00C5243C /* AddCurrencyVM.swift */; };
 		863CD28F2969C56600C5243C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863CD28E2969C56600C5243C /* Category.swift */; };
+		865CEA372986E2F300B0C3B3 /* CurrencySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CEA362986E2F300B0C3B3 /* CurrencySetting.swift */; };
 		867F39FF2969113A0035E096 /* AccountListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F39FE2969113A0035E096 /* AccountListView.swift */; };
 		867F3A01296911D20035E096 /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F3A00296911D20035E096 /* AddAccountView.swift */; };
 		867F3A03296920220035E096 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F3A02296920220035E096 /* Currency.swift */; };
@@ -73,6 +74,7 @@
 		863CD27A296936D400C5243C /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		863CD28C2969775B00C5243C /* AddCurrencyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyVM.swift; sourceTree = "<group>"; };
 		863CD28E2969C56600C5243C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		865CEA362986E2F300B0C3B3 /* CurrencySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySetting.swift; sourceTree = "<group>"; };
 		867F39FE2969113A0035E096 /* AccountListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListView.swift; sourceTree = "<group>"; };
 		867F3A00296911D20035E096 /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
 		867F3A02296920220035E096 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				867F52E12972C2000050E6FE /* Logger.swift */,
 				867F52E8297407860050E6FE /* UtilityHelper.swift */,
 				860B83D1298170F200D6F88B /* ChartHelper.swift */,
+				865CEA362986E2F300B0C3B3 /* CurrencySetting.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				86B1DF18297D5F38007B51AD /* CategoryEntity+CoreDataClass.swift in Sources */,
 				86E8020B296167F50044ADF9 /* RecordListView.swift in Sources */,
 				867F3A03296920220035E096 /* Currency.swift in Sources */,
+				865CEA372986E2F300B0C3B3 /* CurrencySetting.swift in Sources */,
 				868A856B2972751C0031F29B /* CategoryList.swift in Sources */,
 				86B1DF1A297D5F38007B51AD /* SubCategoryEntity+CoreDataClass.swift in Sources */,
 				867F3A01296911D20035E096 /* AddAccountView.swift in Sources */,

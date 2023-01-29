@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChartView: View {
     @ObservedObject private var chartVM: ChartViewModel
-    @State private var currency = UserDefaultHelper.shared.getCurrency().code
+    @EnvironmentObject var currencySetting: CurrencySetting
     
     init(vm: ChartViewModel) {
         chartVM = vm
@@ -28,10 +28,7 @@ struct ChartView: View {
         }
         else {
             VStack(spacing: 10) {
-                PieChart(title: "Expenses", pieItems: chartVM.pieItems, formatter: {value in String(format: "\(currency) %.2f", value)})
-            }
-            .onAppear {
-                currency = UserDefaultHelper.shared.getCurrency().code
+                PieChart(title: "Expenses", pieItems: chartVM.pieItems, formatter: {value in String(format: "\(currencySetting.currency.code) %.2f", value)})
             }
             .padding(10)
         }

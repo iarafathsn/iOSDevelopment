@@ -10,27 +10,26 @@ import SwiftUI
 struct DAccountCell: View {
     let account: AccountEntity
     
-    @State private var currency = UserDefaultHelper.shared.getCurrency().code
+    @EnvironmentObject var currencySetting: CurrencySetting
     @State private var color: Color = .red
     
     var body: some View {
         HStack {
-            CellImageView(imageName: account.wrappedImageName, color: color)
+            CellImageView(imageName: account.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: account.color!))
             
             VStack {
                 Text("\(account.wrappedName)")
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("\(currency) \(UtilityHelper.shared.getBalanceString(balance: account.balance))")
+                Text("\(currencySetting.currency.code) \(UtilityHelper.shared.getBalanceString(balance: account.balance))")
                     .font(.title2)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .onAppear {
-            currency = UserDefaultHelper.shared.getCurrency().code
-            color = ColorEMHelper.getColor(colorEntity: account.color!)
-            Logger.i("Dashboard - Account Cell Appear")
-        }
+//        .onAppear {
+//            color = ColorEMHelper.getColor(colorEntity: account.color!)
+//            Logger.i("Dashboard - Account Cell Appear")
+//        }
     }
 }

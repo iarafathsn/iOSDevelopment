@@ -23,13 +23,11 @@ class UtilityHelper {
             result += item.balance
         }
         
-        let resultString = "\(Double(round(100 * result) / 100))"
-        
-        return resultString
+        return String(format: "%.2f", result)
     }
     
     func getBalanceString(balance: Double) -> String {
-        return "\(Double(round(100 * balance) / 100))"
+        return String(format: "%.2f", balance)
     }
     
     func isSameDay(date: Date) -> Bool {

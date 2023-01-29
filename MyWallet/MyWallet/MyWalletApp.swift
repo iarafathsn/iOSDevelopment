@@ -11,12 +11,15 @@ import SwiftUI
 struct MyWalletApp: App {
     @Environment(\.scenePhase) var scenePhase
     
+    @StateObject var currencySetting = CurrencySetting()
+    
     let dataController = CoreDataModel.shared
 
     var body: some Scene {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(currencySetting)
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
@@ -27,6 +30,7 @@ struct MyWalletApp: App {
             case .active:
                 Logger.i("App State: Active")
 //                UtilityHelper.shared.initilizeCategory()
+                currencySetting.currency = UserDefaultHelper.shared.getCurrency()
                 
             @unknown default:
                 Logger.i("App State: Unknown")
