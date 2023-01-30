@@ -16,9 +16,10 @@ struct EditAccountView: View {
     private let typeItems = AccountTypes.items
     
     @State private var name = ""
-    @State private var balance = 0.0
+    @State private var balance: Double = 0.0
     @State private var type: AccountType = AccountTypes.items[0]
     @State private var color: Color = .red
+    @State private var isInitBalaceUpdate = true
     
     @FocusState var isInputActive: Bool
     
@@ -42,18 +43,18 @@ struct EditAccountView: View {
                     }
             }
             
-            HStack {
-                Text("Balance")
-                Spacer()
-                TextField("\(account.initialAmount)", value: $balance, format: .number)
-                    .lineLimit(1)
-                    .cornerRadius(10)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .focused($isInputActive)
-                    .onAppear {
-                        balance = account.initialAmount
-                    }
+            NavigationLink(destination: UpdateBalanceView(balance: $balance, isInitialBalance: $isInitBalaceUpdate, initialBalance: account.initialAmount, currentBalance: account.balance)) {
+                HStack {
+                    Text("Balance")
+                    Spacer()
+                    Text(String(format: "%.2f", balance))
+                        .foregroundColor(.gray)
+                }
+            }
+            .onAppear {
+                if balance == 0.0 {
+                    balance = account.initialAmount
+                }
             }
             
             HStack {
@@ -100,8 +101,14 @@ struct EditAccountView: View {
                     else {
                         Logger.i("Name: \(name), Balance: \(balance), Type: \(type.name)")
                         
-                        let accountModel = AccountModel(name: name, balance: balance, initialAmount: balance, type: type.name, imageName: type.imageName, color: color)
-                        modifyAccountVM.modifyAccount(accountId: account.id, model: accountModel, isUpdateInitial: true)
+                        if isInitBalaceUpdate {
+                            let accountModel = AccountModel(name: name, balance: account.balance, initialAmount: balance, type: type.name, imageName: type.imageName, color: color)
+                            modifyAccountVM.modifyAccount(accountId: account.id, model: accountModel, isUpdateInitial: true)
+                        }
+                        else {
+                            let accountModel = AccountModel(name: name, balance: balance, initialAmount: account.initialAmount, type: type.name, imageName: type.imageName, color: color)
+                            modifyAccountVM.modifyAccount(accountId: account.id, model: accountModel, isUpdateInitial: false)
+                        }
                         
                         dismiss()
                     }
