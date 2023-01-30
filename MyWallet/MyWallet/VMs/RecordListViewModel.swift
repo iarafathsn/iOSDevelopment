@@ -43,6 +43,20 @@ class RecordListViewModel: NSObject, ObservableObject {
                 return
             }
             
+            // update balance
+            if record.type == AddType.expense.rawValue {
+                record.fromAccount?.balance += record.amount
+            }
+            else if record.type == AddType.income.rawValue {
+                record.fromAccount?.balance -= record.amount
+            }
+            else {
+                record.fromAccount?.balance += record.amount
+                record.toAccount?.balance -= record.amount
+            }
+            
+            try context.save()
+            
             context.delete(record)
             
             try context.save()
