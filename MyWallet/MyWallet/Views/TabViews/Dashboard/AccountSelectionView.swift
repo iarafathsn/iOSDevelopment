@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountSelectionView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
@@ -31,7 +32,7 @@ struct AccountSelectionView: View {
                         Label("Add", systemImage: "plus.circle")
                     }
                     .sheet(isPresented: $showingSheet) {
-                        AddAccountView()
+                        AddAccountView(vm: AddAccountViewModel(context: managedObjectContext))
                     }
                 }
             }
@@ -66,6 +67,7 @@ struct AccountSelectionView: View {
 
 
 struct ToAccountSelectionView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
     
@@ -91,7 +93,7 @@ struct ToAccountSelectionView: View {
                         Label("Add", systemImage: "plus.circle")
                     }
                     .sheet(isPresented: $showingSheet) {
-                        AddAccountView()
+                        AddAccountView(vm: AddAccountViewModel(context: managedObjectContext))
                     }
                 }
             }

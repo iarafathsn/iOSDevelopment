@@ -15,6 +15,13 @@ extension AccountEntity {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<AccountEntity> {
         return NSFetchRequest<AccountEntity>(entityName: "AccountEntity")
     }
+    
+    static var all: NSFetchRequest<AccountEntity> {
+        let request = AccountEntity.fetchRequest()
+        request.sortDescriptors = []
+        
+        return request
+    }
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?

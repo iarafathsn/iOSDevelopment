@@ -41,7 +41,7 @@ struct SettingDetailView: View {
         case .Categories:
             CategoryList(vm: CategoryListViewModel(context: CoreDataModel.shared.container.viewContext))
         case .Account:
-            AccountListView()
+            AccountListView(vm: AccountListViewModel(context: CoreDataModel.shared.container.viewContext))
         case .About :
             AboutView()
         default:

@@ -9,11 +9,14 @@ import SwiftUI
 
 struct AccountListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
-    
     @EnvironmentObject var currencySetting: CurrencySetting
-    
     @State private var showingSheet = false
+    
+    @ObservedObject var accountListVM: AccountListViewModel
+    
+    init(vm: AccountListViewModel) {
+        self.accountListVM = vm
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,18 +26,18 @@ struct AccountListView: View {
                 .font(.system(size: 18, weight: .regular, design: .serif))
             
             List {
-                ForEach(account) { account in
-                    NavigationLink(destination: EditAccountView(account: account)) {
+                ForEach(accountListVM.accounts) { account in
+                    NavigationLink(destination: EditAccountView(vm: ModifyAccountViewModel(context: managedObjectContext), account: account)) {
                         HStack {
-                            CellImageView(imageName: account.wrappedImageName, color: ColorEMHelper.getColor(colorEntity: account.color!))
+                            CellImageView(imageName: account.imageName, color: account.color)
                             
-                            Text(account.name!)
+                            Text(account.name)
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(1)
                         }
                     }
                 }
-                .onDelete(perform: deleteAccount)
+//                .onDelete(perform: deleteAccount)
             }
             .font(.system(size: 24, weight: .semibold, design: .rounded))
         }
@@ -53,7 +56,7 @@ struct AccountListView: View {
                     Label("Add", systemImage: "plus.circle")
                 }
                 .sheet(isPresented: $showingSheet) {
-                    AddAccountView()
+                    AddAccountView(vm: AddAccountViewModel(context: managedObjectContext))
                 }
             }
         }
@@ -62,7 +65,7 @@ struct AccountListView: View {
     private func totalBalance() -> String {
         var result: Double = 0.0
         
-        for item in account {
+        for item in accountListVM.accounts {
             result += item.balance
         }
         
@@ -71,14 +74,16 @@ struct AccountListView: View {
     
     private func deleteAccount(offsets: IndexSet) {
         withAnimation {
-            offsets.map { account[$0] }.forEach(managedObjectContext.delete)
-            CoreDataModel.shared.save(context: managedObjectContext)
+            offsets.forEach {index in
+                let account = accountListVM.accounts[index]
+                accountListVM.deleteAccount(accountId: account.id)
+            }
         }
     }
 }
 
 struct AccountListView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountListView()
+        AccountListView(vm: AccountListViewModel(context: CoreDataModel.shared.container.viewContext))
     }
 }

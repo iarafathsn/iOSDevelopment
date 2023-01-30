@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EditAccountView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
-    var account: FetchedResults<AccountEntity>.Element
+    var account: AccountEntityModel
+    var modifyAccountVM: ModifyAccountViewModel
     
     private let typeItems = AccountTypes.items
     
@@ -22,18 +22,23 @@ struct EditAccountView: View {
     
     @FocusState var isInputActive: Bool
     
+    init(vm: ModifyAccountViewModel, account: AccountEntityModel) {
+        self.modifyAccountVM = vm
+        self.account = account
+    }
+    
     var body: some View {
         Form {
             HStack {
                 Text("Name")
                 Spacer()
-                TextField("\(account.name!)", text: $name)
+                TextField("\(account.name)", text: $name)
                     .lineLimit(1)
                     .cornerRadius(10)
                     .multilineTextAlignment(.trailing)
                     .focused($isInputActive)
                     .onAppear {
-                        name = account.name!
+                        name = account.name
                     }
             }
             
@@ -68,7 +73,7 @@ struct EditAccountView: View {
                 VStack {
                     ColorPicker("Color", selection: $color)
                         .onAppear {
-                            color = ColorEMHelper.getColor(colorEntity: account.color!)
+                            color = account.color
                         }
                 }
             }
@@ -95,9 +100,8 @@ struct EditAccountView: View {
                     else {
                         Logger.i("Name: \(name), Balance: \(balance), Type: \(type.name)")
                         
-                        let accountModel = AccountModel(name: name, balance: balance, type: type.name, imageName: type.imageName, color: color)
-                        
-                        CoreDataModel.shared.editAccount(account: account, accountModel: accountModel, context: managedObjectContext)
+                        let accountModel = AccountModel(name: name, balance: balance, initialAmount: balance, type: type.name, imageName: type.imageName, color: color)
+                        modifyAccountVM.modifyAccount(accountId: account.id, model: accountModel, isUpdateInitial: true)
                         
                         dismiss()
                     }

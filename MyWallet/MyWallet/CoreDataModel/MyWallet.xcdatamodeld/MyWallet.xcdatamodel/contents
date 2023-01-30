@@ -7,7 +7,7 @@
         <attribute name="initialAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
-        <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ColorEntity" inverseName="accountColors" inverseEntity="ColorEntity"/>
+        <relationship name="color" maxCount="1" deletionRule="Nullify" destinationEntity="ColorEntity" inverseName="accountColors" inverseEntity="ColorEntity"/>
         <relationship name="transactionsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="fromAccount" inverseEntity="TransactionEntity"/>
         <relationship name="transferTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionEntity" inverseName="toAccount" inverseEntity="TransactionEntity"/>
     </entity>

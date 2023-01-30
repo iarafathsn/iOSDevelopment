@@ -11,6 +11,7 @@ struct AccountModel: Identifiable {
     let id = UUID()
     let name: String
     let balance: Double
+    let initialAmount: Double
     let type: String
     let imageName: String
     let color: Color
