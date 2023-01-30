@@ -51,10 +51,6 @@ struct DashboardView: View {
                     }
                 }
             }
-            .onAppear {
-                Logger.i("Appearing Dashboard view")
-                UtilityHelper.shared.setDefaultDate()
-            }
         }
     }
 }
