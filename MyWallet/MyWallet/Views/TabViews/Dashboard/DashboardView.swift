@@ -25,7 +25,7 @@ struct DashboardView: View {
                             .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text("\(currencySetting.currency.code) \(dashboardVM.totalBalance)")
+                        Text("\(currencySetting.currency) \(dashboardVM.totalBalance)")
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -42,7 +42,7 @@ struct DashboardView: View {
                                         .font(.title)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                     
-                                    Text("\(currencySetting.currency.code) \(item.balanceString)")
+                                    Text("\(currencySetting.currency) \(item.balanceString)")
                                         .font(.title2)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }

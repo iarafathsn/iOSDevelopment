@@ -20,7 +20,7 @@ struct AccountListView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Total Balance: \(self.totalBalance()) \(currencySetting.currency.code)")
+            Text("Total Balance: \(self.totalBalance()) \(currencySetting.currency)")
                 .foregroundColor(.gray)
                 .padding(.horizontal)
                 .font(.system(size: 18, weight: .regular, design: .serif))

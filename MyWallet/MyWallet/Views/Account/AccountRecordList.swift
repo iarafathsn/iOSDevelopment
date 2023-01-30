@@ -21,7 +21,7 @@ struct AccountRecordList: View {
                         .font(.title2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text("\(account.balanceString) \(currencySetting.currency.code)")
+                    Text("\(account.balanceString) \(currencySetting.currency)")
                         .font(.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }

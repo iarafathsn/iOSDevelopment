@@ -37,7 +37,7 @@ struct SettingDetailView: View {
     var body: some View {
         switch type {
         case .Currency:
-            CurrencyView()
+            CurrencyView(vm: CurrencyViewModel())
         case .Categories:
             CategoryList(vm: CategoryListViewModel(context: CoreDataModel.shared.container.viewContext))
         case .Account:

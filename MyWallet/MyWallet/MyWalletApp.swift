@@ -11,7 +11,7 @@ import SwiftUI
 struct MyWalletApp: App {
     @Environment(\.scenePhase) var scenePhase
     
-    @StateObject var currencySetting = CurrencySetting()
+    @StateObject var currencySetting = CurrencySetting.shared
     
     let dataController = CoreDataModel.shared
 
@@ -29,8 +29,6 @@ struct MyWalletApp: App {
                 Logger.i("App State: Inactive")
             case .active:
                 Logger.i("App State: Active")
-//                UtilityHelper.shared.initilizeCategory()
-                currencySetting.currency = UserDefaultHelper.shared.getCurrency()
                 
             @unknown default:
                 Logger.i("App State: Unknown")

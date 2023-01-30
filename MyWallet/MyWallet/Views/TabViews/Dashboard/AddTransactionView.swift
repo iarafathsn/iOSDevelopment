@@ -42,7 +42,7 @@ struct AddTransactionView: View {
                     HStack {
                         NavigationLink(destination: AddNumberField(number: $selectedAmount, title: "Amount", isEnableType: false)) {
                             HStack {
-                                Text("\(currencySetting.currency.code)")
+                                Text("\(currencySetting.currency)")
                                     .cornerRadius(10)
                                     .font(.system(size: 30, weight: .semibold))
                                 

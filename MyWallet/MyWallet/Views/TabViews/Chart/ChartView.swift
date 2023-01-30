@@ -28,7 +28,7 @@ struct ChartView: View {
         }
         else {
             VStack(spacing: 10) {
-                PieChart(title: "Expenses", pieItems: chartVM.pieItems, formatter: {value in String(format: "\(currencySetting.currency.code) %.2f", value)})
+                PieChart(title: "Expenses", pieItems: chartVM.pieItems, formatter: {value in String(format: "\(currencySetting.currency) %.2f", value)})
             }
             .padding(10)
         }

@@ -36,7 +36,7 @@ struct UpdateBalanceView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 
                 HStack {
-                    Text("\(currencySetting.currency.code)")
+                    Text("\(currencySetting.currency)")
                         .cornerRadius(10)
                         .font(.system(size: 30, weight: .semibold))
                     

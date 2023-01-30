@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Currency: Identifiable {
+struct Currency: Identifiable, Hashable {
     let id = UUID()
     let symbol: String
     let code: String

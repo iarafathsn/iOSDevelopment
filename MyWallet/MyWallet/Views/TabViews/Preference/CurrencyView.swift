@@ -8,21 +8,32 @@
 import SwiftUI
 
 struct CurrencyView: View {
-    @ObservedObject var defaultDataVM = AddCurrencyVM()
+    @Environment(\.dismiss) var dismiss
+    
+    @ObservedObject private var currencyVM: CurrencyViewModel
+    @EnvironmentObject var currencySetting: CurrencySetting
+    
+    init(vm: CurrencyViewModel) {
+        self.currencyVM = vm
+    }
 
     var body: some View {
         Form {
-            Picker("Code", selection: $defaultDataVM.currencyIndex) {
-                ForEach(0 ..< defaultDataVM.currencyList.count, id: \.self) {
-                    Text(defaultDataVM.currencyList[$0].code).tag($0)
+            Picker("Code", selection: $currencyVM.currencyIndex) {
+                ForEach(0 ..< currencyVM.currencyList.count, id: \.self) {
+                    Text(currencyVM.currencyList[$0].code).tag($0)
                 }
             }
             
             HStack {
                 Text("Symbol")
                 Spacer()
-                Text("\(defaultDataVM.setCurrency(index: defaultDataVM.currencyIndex).symbol)")
+                Text("\(currencyVM.getCurrencyByIndex().symbol)")
             }
+        }
+        .onDisappear {
+            currencyVM.storeCurrencyByIndex()
+            currencySetting.currency = currencyVM.getCurrencyByIndex().code
         }
         .font(.title)
         .navigationTitle("Currency")
@@ -31,6 +42,6 @@ struct CurrencyView: View {
 
 struct CurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrencyView()
+        CurrencyView(vm: CurrencyViewModel())
     }
 }
