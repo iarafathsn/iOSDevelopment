@@ -40,19 +40,20 @@ struct AddTransactionView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     
                     HStack {
-                        Text("\(currencySetting.currency.code)")
-                            .cornerRadius(10)
-                            .font(.system(size: 30, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        TextField("0", value: $selectedAmount, format: .number)
-                            .lineLimit(1)
-                            .font(.system(size: 36, weight: .bold))
-                            .foregroundColor(self.getAmountTextColor())
-                            .multilineTextAlignment(.trailing)
-                            .keyboardType(.decimalPad)
-                            .focused($isInputActive)
+                        NavigationLink(destination: AddNumberField(number: $selectedAmount, title: "Amount", isEnableType: false)) {
+                            HStack {
+                                Text("\(currencySetting.currency.code)")
+                                    .cornerRadius(10)
+                                    .font(.system(size: 30, weight: .semibold))
+                                
+                                Spacer()
+                                
+                                Text(self.getBalanceString(amount: selectedAmount))
+                                    .lineLimit(1)
+                                    .foregroundColor(self.getAmountTextColor())
+                                    .font(.system(size: 36, weight: .bold))
+                            }
+                        }
                     }
                 }
                 
@@ -131,7 +132,7 @@ struct AddTransactionView: View {
                 }
                 
                 Section("More Detail") {
-                    NavigationLink(destination: AddDetail(text: $enteredNote, detailType: .note)) {
+                    NavigationLink(destination: AddTextField(text: $enteredNote, title: "Note")) {
                         HStack {
                             Text("Note")
                                 .lineLimit(1)
@@ -146,7 +147,7 @@ struct AddTransactionView: View {
                         }
                     }
                     
-                    NavigationLink(destination: AddDetail(text: $enteredPayee, detailType: .payee)) {
+                    NavigationLink(destination: AddTextField(text: $enteredPayee, title: "Payee")) {
                         HStack {
                             Text("Payee")
                                 .lineLimit(1)
@@ -175,14 +176,6 @@ struct AddTransactionView: View {
             .navigationBarTitle("Add \(selectedType.rawValue)")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button(action: {
-                        Logger.i("Keyboard hide pressed")
-                        isInputActive = false
-                    }, label: {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    })
-                }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button("Cancel") {
                         Logger.i("Cancel pressed")
                         dismiss()
@@ -228,6 +221,18 @@ struct AddTransactionView: View {
             return .primary
         }
     }
+    
+    private func getBalanceString(amount: Double) -> String {
+        if selectedType == .expense {
+            return String(format: "-%.2f", amount)
+        }
+        else if selectedType == .income {
+            return String(format: "+%.2f", amount)
+        }
+        else {
+            return String(format: "%.2f", amount)
+        }
+    }
 }
 
 enum AddType: String, CaseIterable {
@@ -245,52 +250,8 @@ enum PaymentType: String, CaseIterable {
     case other = "Other"
 }
 
-enum DetailType {
-    case note
-    case payee
-}
-
-struct AddDetail: View {
-    @Environment(\.dismiss) var dismiss
-    @Binding var text: String
-    @FocusState private var isInputActive: Bool
-    
-    var detailType: DetailType
-    
-    var body: some View {
-        VStack {
-            Text("\(self.getTitle())")
-            
-            TextField("", text: $text)
-                .multilineTextAlignment(.center)
-                .lineLimit(1)
-                .font(.system(size: 24, weight: .semibold))
-                .focused($isInputActive)
-                .onSubmit {
-                    Logger.i("Finished")
-                    dismiss()
-                }
-            
-            Spacer()
-        }
-        .onAppear {
-            isInputActive = true
-        }
-    }
-    
-    private func getTitle() -> String {
-        if detailType == .note {
-            return "Add Note"
-        }
-        else {
-            return "Add Payee"
-        }
-    }
-}
-
 struct AddTransactionView_Previews: PreviewProvider {
     static var previews: some View {
         AddTransactionView()
-//        AddDetail(text: .constant("Arafat"), detailType: .note)
     }
 }

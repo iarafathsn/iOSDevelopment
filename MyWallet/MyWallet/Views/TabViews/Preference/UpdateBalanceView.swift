@@ -55,7 +55,7 @@ struct UpdateBalanceView: View {
             Section("Choose the adjustment option") {
                 HStack {
                     Text("Update Initial Balance")
-                        .font(.title)
+                        .font(.system(size: 24, weight: .semibold))
                     
                     if isInitialBalance == true {
                         Spacer()
@@ -71,12 +71,12 @@ struct UpdateBalanceView: View {
                 }
                 
                 Text("By updating initial balance, the initial balance value will be updated")
-                    .font(.title3)
+                    .font(.system(size: 20))
                     .foregroundColor(.gray)
                 
                 HStack {
                     Text("Update Current Balance")
-                        .font(.title)
+                        .font(.system(size: 24, weight: .semibold))
                     
                     if isInitialBalance == false {
                         Spacer()
@@ -92,10 +92,11 @@ struct UpdateBalanceView: View {
                 }
                 
                 Text("If you forgot about some transaction, but the balance is changed, you can adjust the balance by this option")
-                    .font(.title3)
+                    .font(.system(size: 20))
                     .foregroundColor(.gray)
             }
         }
+        .navigationTitle("Balance Option")
         .onDisappear {
             Logger.i("Balance: \(balance)")
             if balanceType == .negative {

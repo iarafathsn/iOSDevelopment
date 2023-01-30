@@ -29,24 +29,37 @@ struct AddAccountView: View {
         NavigationView {
             Form {
                 HStack {
-                    Text("Account Name")
-                    Spacer()
-                    TextField("Name", text: $accountName)
-                        .lineLimit(1)
-                        .cornerRadius(10)
-                        .multilineTextAlignment(.trailing)
-                        .focused($isInputActive)
+                    NavigationLink(destination: AddTextField(text: $accountName, title: "Account Name")) {
+                        HStack {
+                            Text("Account Name")
+                                .lineLimit(1)
+                                .font(.system(size: 22, weight: .semibold))
+                            
+                            Spacer()
+                            
+                            Text(accountName)
+                                .lineLimit(1)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 20, weight: .regular))
+                        }
+                    }
                 }
                 
                 HStack {
-                    Text("Current Balance")
-                    Spacer()
-                    TextField("Balance", value: $accountBalance, format: .number)
-                        .lineLimit(1)
-                        .cornerRadius(10)
-                        .multilineTextAlignment(.trailing)
-                        .keyboardType(.decimalPad)
-                        .focused($isInputActive)
+                    NavigationLink(destination: AddNumberField(number: $accountBalance, title: "Current Balance")) {
+                        HStack {
+                            Text("Current Balance")
+                                .lineLimit(1)
+                                .font(.system(size: 22, weight: .semibold))
+                            
+                            Spacer()
+                            
+                            Text(String(format: "%.2f", accountBalance))
+                                .lineLimit(1)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 20, weight: .regular))
+                        }
+                    }
                 }
                 
                 HStack {
@@ -66,14 +79,6 @@ struct AddAccountView: View {
             .navigationTitle("Add Account")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button(action: {
-                        Logger.i("Keyboard hide pressed")
-                        isInputActive = false
-                    }, label: {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    })
-                }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button("Cancel") {
                         Logger.i("Cancel pressed")
                         dismiss()

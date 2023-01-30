@@ -31,16 +31,23 @@ struct EditAccountView: View {
     var body: some View {
         Form {
             HStack {
-                Text("Name")
-                Spacer()
-                TextField("\(account.name)", text: $name)
-                    .lineLimit(1)
-                    .cornerRadius(10)
-                    .multilineTextAlignment(.trailing)
-                    .focused($isInputActive)
-                    .onAppear {
-                        name = account.name
+                NavigationLink(destination: AddTextField(text: $name, title: "Account Name")) {
+                    HStack {
+                        Text("Account Name")
+                            .lineLimit(1)
+                            .font(.system(size: 22, weight: .semibold))
+                        
+                        Spacer()
+                        
+                        Text(name)
+                            .lineLimit(1)
+                            .foregroundColor(.gray)
+                            .font(.system(size: 20, weight: .regular))
                     }
+                }
+            }
+            .onAppear {
+                name = account.name
             }
             
             NavigationLink(destination: UpdateBalanceView(balance: $balance, isInitialBalance: $isInitBalaceUpdate, initialBalance: account.initialAmount, currentBalance: account.balance)) {
@@ -82,15 +89,6 @@ struct EditAccountView: View {
         .font(.system(size: 24, weight: .semibold))
         .navigationTitle("Modify Account")
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Button(action: {
-                    Logger.i("Keyboard hide pressed")
-                    isInputActive = false
-                }, label: {
-                    Image(systemName: "keyboard.chevron.compact.down")
-                })
-            }
-            
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Save") {
                     Logger.i("Add pressed")
