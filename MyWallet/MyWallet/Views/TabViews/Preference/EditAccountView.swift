@@ -52,7 +52,7 @@ struct EditAccountView: View {
                     .keyboardType(.decimalPad)
                     .focused($isInputActive)
                     .onAppear {
-                        balance = account.balance
+                        balance = account.initialAmount
                     }
             }
             

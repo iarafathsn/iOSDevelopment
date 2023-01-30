@@ -17,42 +17,39 @@ struct RecordListView: View {
     }
     
     var body: some View {
-        if recordListVM.transactions.count == 0 {
-            ZStack {
-                Circle()
-                    .frame(width: 400, height: 400)
-                    .foregroundColor(.blue)
-                Text("No transaction found")
-                    .foregroundColor(.white)
-                    .font(.system(size: 30, weight: .bold))
-            }
-        }
-        else {
-            NavigationView {
-                List {
-                    ForEach(recordListVM.transactions) { item in
-                        ItemListCell(recordModel: item)
-                    }
-                    .onDelete(perform: deleteTransaction)
+        NavigationView {
+            VStack {
+                if recordListVM.transactions.count == 0 {
+                    Text("No records")
+                        .foregroundColor(.white)
+                        .font(.title)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            Logger.i("Add Transaction pressed")
-                            showingSheet.toggle()
-                        } label: {
-                            Label("Add", systemImage: "plus.circle")
+                else {
+                    List {
+                        ForEach(recordListVM.transactions) { item in
+                            ItemListCell(recordModel: item)
                         }
-                        .sheet(isPresented: $showingSheet) {
-                            AddTransactionView()
-                        }
+                        .onDelete(perform: deleteTransaction)
                     }
                 }
-                .onAppear {
-                    UtilityHelper.shared.setDefaultDate()
-                }
-                .navigationTitle("Records")
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        Logger.i("Add Transaction pressed")
+                        showingSheet.toggle()
+                    } label: {
+                        Label("Add", systemImage: "plus.circle")
+                    }
+                    .sheet(isPresented: $showingSheet) {
+                        AddTransactionView()
+                    }
+                }
+            }
+            .onAppear {
+                UtilityHelper.shared.setDefaultDate()
+            }
+            .navigationTitle("Records")
         }
     }
     

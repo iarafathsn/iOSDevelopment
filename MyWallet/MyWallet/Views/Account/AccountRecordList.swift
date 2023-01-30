@@ -10,18 +10,18 @@ import SwiftUI
 struct AccountRecordList: View {
     @EnvironmentObject var currencySetting: CurrencySetting
     
-    let account: AccountEntity
+    let account: AccountEntityModel
     
     var body: some View {
         Form {
             Section {
                 VStack {
-                    Text(account.wrappedName)
+                    Text(account.name)
                         .textCase(.uppercase)
                         .font(.title2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text("\(UtilityHelper.shared.getBalanceString(balance: account.balance)) \(currencySetting.currency.code)")
+                    Text("\(account.balanceString) \(currencySetting.currency.code)")
                         .font(.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -29,8 +29,8 @@ struct AccountRecordList: View {
             }
             
             Section {
-                ForEach(account.transactionFromArray) { item in
-                    ItemListCell(recordModel: RecordModel(transaction: item))
+                ForEach(account.transactions) { item in
+                    ItemListCell(recordModel: item)
                 }
             }
         }

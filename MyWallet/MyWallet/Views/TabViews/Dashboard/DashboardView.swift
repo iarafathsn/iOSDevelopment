@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.name, order: .reverse)]) var account: FetchedResults<AccountEntity>
-    
     @EnvironmentObject var currencySetting: CurrencySetting
     
-    private var dashboardVM: DashboardViewModel
+    @ObservedObject var dashboardVM: DashboardViewModel
     
     init(vm: DashboardViewModel) {
         self.dashboardVM = vm
@@ -27,16 +25,28 @@ struct DashboardView: View {
                             .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text("\(currencySetting.currency.code) \(UtilityHelper.shared.totalBalance(account: account))")
+                        Text("\(currencySetting.currency.code) \(dashboardVM.totalBalance)")
                             .font(.title2)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 
                 Section {
-                    List(account) { item in
+                    ForEach(dashboardVM.accounts) { item in
                         NavigationLink(destination: AccountRecordList(account: item)) {
-                            DAccountCell(account: item)
+                            HStack {
+                                CellImageView(imageName: item.imageName, color: item.color)
+                                
+                                VStack {
+                                    Text("\(item.name)")
+                                        .font(.title)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Text("\(currencySetting.currency.code) \(item.balanceString)")
+                                        .font(.title2)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                            }
                         }
                     }
                 }
